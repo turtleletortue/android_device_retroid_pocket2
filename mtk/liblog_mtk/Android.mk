@@ -1,0 +1,12 @@
+LOCAL_PATH := $(call my-dir)
+
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := mtk_xlog.c
+
+LOCAL_SHARED_LIBRARIES := liblog
+LOCAL_MODULE := liblog_mtk
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_PROPRIETARY_MODULE := true
+
+include $(BUILD_SHARED_LIBRARY)
