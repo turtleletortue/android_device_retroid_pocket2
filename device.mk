@@ -4,6 +4,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 # Add all product locales
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
+# Vendor
+$(call inherit-product-if-exists, vendor/retroid/pocket2/pocket2-vendor.mk)
+
 # Wifi
 PRODUCT_PACKAGES += \
     libwpa_client \
@@ -62,3 +65,6 @@ PRODUCT_CHARACTERISTICS := tablet
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
+# Dalvik/HWUI
+$(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
+$(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)

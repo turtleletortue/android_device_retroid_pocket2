@@ -377,3 +377,23 @@ bin/af7133ed
 
 etc/recovery.fstab
 etc/partition_permission.sh
+
+# Keyboard layouts
+usr/keylayout/mtk-kpd.kl
+
+# Thermal
+etc/.tp/thermal.conf
+etc/.tp/thermal.off.conf
+etc/.tp/.ht120.mtc
+
+# Configs
+etc/slp_conf
+etc/spn-conf.xml
+etc/media_codecs.xml
+etc/media_codecs_performance.xml
+etc/media_codecs_mediatek_video.xml
+etc/media_codecs_mediatek_audio.xml
+etc/media_codecs_google_video_le.xml
+etc/media_codecs_google_audio.xml
+etc/audio_policy.conf
+
