@@ -1,1 +1,1 @@
-Experimental device tree for Retroid Pocket 2 AOSP 6
+Experimental device tree for Retroid Pocket 2 LineageOS 14.1

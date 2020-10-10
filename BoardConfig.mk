@@ -1,6 +1,8 @@
 # Get proprietary blobs
 -include vendor/retroid/pocket2/BoardConfigVendor.mk
 
+DEVICE_PATH := device/retroid/pocket2
+
 # Architecture
 TARGET_BOARD_PLATFORM := mt6580
 
@@ -16,8 +18,13 @@ TARGET_SCREEN_HEIGHT := 640
 TARGET_SCREEN_WIDTH := 480
 
 # Kernel
+TARGET_KERNEL_ARCH := arm
+TARGET_KERNEL_SOURCE := kernel/retroid/pocket2
+TARGET_KERNEL_CONFIG := real6580_weg_m_defconfig
+BOARD_KERNEL_IMAGE_NAME := zImage-dtb
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := $(shell pwd)/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-
 BOARD_MKBOOTIMG_ARGS := --pagesize 2048 --base 0x80000000 --kernel_offset 0x00008000 --ramdisk_offset 0x04000000 --second_offset 0x00f00000 --tags_offset 0x0e000000 --cmdline "bootopt=64S3,32S1,32S1 androidboot.selinux=permissive"
-TARGET_PREBUILT_KERNEL := device/retroid/pocket2/kernel
+#TARGET_PREBUILT_KERNEL := device/retroid/pocket2/kernel
 
 # Images
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -50,7 +57,7 @@ MTK_HARDWARE := true
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/BOOT/BOOT/boot/boot_mode
 
 # Recovery resources
-TARGET_RECOVERY_FSTAB := device/retroid/pocket2/rootdir/root/recovery.fstab
+TARGET_RECOVERY_FSTAB := device/retroid/pocket2/rootdir/recovery.fstab
 TARGET_PREBUILT_RECOVERY_KERNEL := device/retroid/pocket2/kernel
 
 # Sepolicy
@@ -63,3 +70,18 @@ BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_MTK := true
 BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/retroid/pocket2/bluetooth
+
+# Shims
+LINKER_FORCED_SHIM_LIBS := \
+    /system/lib/libdpframework.so|liblog_mtk.so\
+    /system/bin/guiext-server|liblog_mtk.so\
+    /system/bin/pq|liblog_mtk.so\
+    /system/lib/egl/libGLES_mali.so|liblog_mtk.so\
+    /system/lib/libfmcust.so|liblog_mtk.so\
+    /system/xbin/mnld|liblog_mtk.so\
+    /system/bin/mtk_agpsd|liblog_mtk.so\
+    /system/bin/mobile_log_d|liblog_mtk.so\
+    /system/bin/emdlogger1|liblog_mtk.so\
+
+# Headers
+TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
