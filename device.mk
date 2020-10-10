@@ -33,12 +33,11 @@ PRODUCT_PACKAGES += libbt-vendor
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/root/fstab.mt6580:root/fstab.mt6580 \
-    $(LOCAL_PATH)/rootdir/root/init.mt6580.rc:root/init.mt6580.rc \
-    $(LOCAL_PATH)/rootdir/root/init.modem.rc:root/init.modem.rc \
-    $(LOCAL_PATH)/rootdir/root/init.mt6580.usb.rc:root/init.mt6580.usb.rc \
-    $(LOCAL_PATH)/rootdir/root/ueventd.mt6580.rc:root/ueventd.mt6580.rc \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/rootdir,root)
 
+PRODUCT_PACKAGES += \
+    libxlog \
+    liblog_mtk
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -55,10 +54,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml
-
-# MTK log
-PRODUCT_PACKAGES += \
-    liblog_mtk
 
 # Tablet characteristics
 PRODUCT_CHARACTERISTICS := tablet
