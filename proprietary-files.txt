@@ -138,7 +138,7 @@ bin/nvram_daemon
 bin/geomagneticd
 bin/ccci_fsd
 bin/memsicd
-bin/thermal
+#bin/thermal
 bin/ami304d
 bin/mc6420d
 bin/s62xd
@@ -147,7 +147,7 @@ bin/orientationd
 bin/memsicd3416x
 bin/bmm050d
 bin/terservice
-bin/thermald
+#bin/thermald
 bin/6620_launcher
 bin/ccci_mdinit
 bin/mtkrild
