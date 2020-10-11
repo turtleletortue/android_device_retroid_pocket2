@@ -22,7 +22,7 @@ TARGET_KERNEL_ARCH := arm
 TARGET_KERNEL_SOURCE := kernel/retroid/pocket2
 TARGET_KERNEL_CONFIG := real6580_weg_m_defconfig
 BOARD_KERNEL_IMAGE_NAME := zImage-dtb
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := $(shell pwd)/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := $(shell pwd)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin/arm-eabi-
 BOARD_MKBOOTIMG_ARGS := --pagesize 2048 --base 0x80000000 --kernel_offset 0x00008000 --ramdisk_offset 0x04000000 --second_offset 0x00f00000 --tags_offset 0x0e000000 --cmdline "bootopt=64S3,32S1,32S1 androidboot.selinux=permissive"
 #TARGET_PREBUILT_KERNEL := device/retroid/pocket2/kernel
 
@@ -72,6 +72,8 @@ BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/retroid/pocket2/bluetooth
 
 # Shims
+TARGET_LDPRELOAD += libmtk_symbols.so
+
 LINKER_FORCED_SHIM_LIBS := \
     /system/lib/libdpframework.so|liblog_mtk.so\
     /system/bin/guiext-server|liblog_mtk.so\
@@ -82,6 +84,16 @@ LINKER_FORCED_SHIM_LIBS := \
     /system/bin/mtk_agpsd|liblog_mtk.so\
     /system/bin/mobile_log_d|liblog_mtk.so\
     /system/bin/emdlogger1|liblog_mtk.so\
-
+    /system/bin/boot_logo_updater|liblog_mtk.so\
+    /system/bin/MtkCodecService|liblog_mtk.so\
+    /system/vendor/lib/libwvm.so|libshim_wvm.so \
+	/system/lib/libui_ext.so|libshim_ui.so \
+	/system/lib/libgui_ext.so|libshim_ui.so \
+    /system/bin/xlog|libmtk_symbols.so \
+    /system/bin/program_binary_service|libmtk_symbols.so\
+    /system/lib/libccci_util.so|libmtk_symbols.so\
+    /system/lib/libfs_mgr.so|libmtk_symbols.so\
+    
+    
 # Headers
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include

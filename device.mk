@@ -35,8 +35,20 @@ PRODUCT_PACKAGES += libbt-vendor
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/rootdir,root)
 
+# Shims
 PRODUCT_PACKAGES += \
     liblog_mtk
+
+# Shims
+PRODUCT_PACKAGES += \
+    libmtk_symbols \
+    libshim_ui \
+    libshim_wvm \
+    libshim_drm
+
+# Graphics
+PRODUCT_PACKAGES += \
+    libGLES_android \
 
 # Permissions
 PRODUCT_COPY_FILES += \
