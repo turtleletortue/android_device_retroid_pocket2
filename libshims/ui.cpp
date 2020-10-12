@@ -36,6 +36,10 @@ extern "C" {
         _ZN7android19GraphicBufferMapper4lockEPK13native_handlejRKNS_4RectEPPv(
            handle, static_cast<uint32_t>(usage), bounds, vaddr);
     }
+    int _ZN7android10uirenderer12ProgramAtlas14createProgramsEPxPi(int64_t* map, int* mapLength)
+    {
+        return 0x0;
+    }
 
 }
 

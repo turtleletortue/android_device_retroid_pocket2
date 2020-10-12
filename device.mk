@@ -45,7 +45,9 @@ PRODUCT_PACKAGES += \
     libshim_ui \
     libshim_wvm \
     libshim_drm \
-    libshim_bionic
+    libshim_bionic \
+    libshim_netutils \
+    libshim_camera
 
 # Graphics
 PRODUCT_PACKAGES += \

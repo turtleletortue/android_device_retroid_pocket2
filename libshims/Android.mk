@@ -28,19 +28,29 @@ LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_PROPRIETARY_MODULE := true
 include $(BUILD_SHARED_LIBRARY)
 
-# /system/bin/pq, /system/lib/egl/libGLES_mali.so,
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := netutils.cpp
+LOCAL_SHARED_LIBRARIES := liblog
 LOCAL_MODULE := libshim_netutils
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-LCOAL_PROPRIETARY_MODULE := true
+LOCAL_PROPRIETARY_MODULE := true
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := bionic.cpp
-LOCAL_MODULE := libshims_bionic
+LOCAL_MODULE := libshim_bionic
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_32_BIT_ONLY := true
 LOCAL_SHARED_LIBRARIES := libc
+include $(BUILD_SHARED_LIBRARY)
+
+
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := camera.cpp
+LOCAL_MODULE := libshim_camera
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_32_BIT_ONLY := true
+LOCAL_SHARED_LIBRARIES := libgui libui libcamera_client
 include $(BUILD_SHARED_LIBRARY)

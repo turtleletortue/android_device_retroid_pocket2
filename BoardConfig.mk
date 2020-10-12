@@ -93,10 +93,13 @@ LINKER_FORCED_SHIM_LIBS := \
     /system/bin/program_binary_service|libmtk_symbols.so \
     /system/lib/libccci_util.so|libmtk_symbols.so \
     /system/lib/libfs_mgr.so|libmtk_symbols.so \
-    /system/bin/cameraserver|libmtk_symbols.so \
-    /system/bin/mediaserver|libmtk_symbols.so \
     /system/bin/pq|libshim_bionic.so \
-    /system/lib/egl/libGLES_mali.so|libshim_bionic.so
+    /system/lib/egl/libGLES_mali.so|libshim_bionic.so \
+    /system/bin/thermal|libshim_netutils.so \
+    /system/bin/cameraserver|libshim_camera.so \
+    /system/bin/mediaserver|libshim_camera.so \
+    /system/bin/program_binary_service|libshim_ui.so \
+    
     
 # Headers
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include

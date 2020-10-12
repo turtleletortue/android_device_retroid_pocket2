@@ -41,7 +41,7 @@ lib/libcamdrv_FrmB.so
 lib/libcvsd_mtk.so
 lib/libcustom_nvram.so
 lib/libJpgDecPipe.so
-lib/libcamera_client.so
+#lib/libcamera_client.so
 lib/libcam_mmp.so
 lib/librilmtk.so
 lib/libMtkOmxVenc.so
@@ -138,7 +138,7 @@ bin/nvram_daemon
 bin/geomagneticd
 bin/ccci_fsd
 bin/memsicd
-#bin/thermal
+bin/thermal
 bin/ami304d
 bin/mc6420d
 bin/s62xd
@@ -147,7 +147,7 @@ bin/orientationd
 bin/memsicd3416x
 bin/bmm050d
 bin/terservice
-#bin/thermald
+bin/thermald
 bin/6620_launcher
 bin/ccci_mdinit
 bin/mtkrild
@@ -214,10 +214,6 @@ bin/audiocmdservice_atci
 bin/autobt
 bin/autokd
 bin/applysig
-bin/aee
-bin/aee_archive
-bin/aee_core_forwarder
-bin/aee_dumpstate
 bin/AcdApiDaemon
 bin/xlog
 lib/volte_imsm.so
