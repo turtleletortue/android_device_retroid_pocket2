@@ -43,5 +43,8 @@ extern "C" {
         return 0;
     }
     
+    void _ZN7android12AudioPCMxWay4stopEv(){
+
+    }
 }
 

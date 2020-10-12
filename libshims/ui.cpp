@@ -40,6 +40,13 @@ extern "C" {
     {
         return 0x0;
     }
+    int _ZN7android10uirenderer12ProgramAtlas28loadProgramBinariesAndDeleteEPxiPvi() {
+        return 0x0;
+    }
+
+    int _ZN7android10uirenderer12ProgramAtlas9terminateEv() {
+        return 0x0;
+    }
 
 }
 
