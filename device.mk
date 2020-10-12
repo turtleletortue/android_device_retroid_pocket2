@@ -44,7 +44,8 @@ PRODUCT_PACKAGES += \
     libmtk_symbols \
     libshim_ui \
     libshim_wvm \
-    libshim_drm
+    libshim_drm \
+    libshim_bionic
 
 # Graphics
 PRODUCT_PACKAGES += \
