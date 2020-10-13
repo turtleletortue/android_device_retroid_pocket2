@@ -52,6 +52,10 @@ PRODUCT_PACKAGES += \
 # Graphics
 PRODUCT_PACKAGES += \
     libGLES_android \
+    libion
+
+# Misc
+EXCLUDE_SERIF_FONTS := true
 
 # Permissions
 PRODUCT_COPY_FILES += \

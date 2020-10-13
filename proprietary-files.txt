@@ -55,7 +55,7 @@ lib/libbwc.so
 lib/libcam.metadataprovider.so
 lib/libmtcloader.so
 lib/libmmprofile.so
-lib/libion.so
+#lib/libion.so
 lib/libaudiocompensationfilter.so
 lib/libblisrc32.so
 lib/libm4u.so
@@ -293,7 +293,7 @@ lib/drm/libdrmctaplugin.so
 vendor/lib/mediadrm/libmockdrmcryptoplugin.so
 
 lib/libwapi.so
-lib/libudf.so
+#lib/libudf.so
 lib/libtouchfilter.so
 lib/libtinyxml.so
 lib/libtinycompress.so
