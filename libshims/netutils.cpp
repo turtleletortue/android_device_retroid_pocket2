@@ -14,6 +14,7 @@
 
 #define SIOCSTXQSTATE (SIOCDEVPRIVATE + 0)  //start/stop ccmni tx queue
 #define SIOCSCCMNICFG (SIOCDEVPRIVATE + 1)  //configure ccmni/md remapping
+extern "C" {
 const char ipv6_proc_path[] = "/proc/sys/net/ipv6/conf";
 
 struct sockaddr_un {
@@ -205,4 +206,5 @@ int ifc_ipv6_trigger_rs(char *ifname){
      }
 
     return 0;
+}
 }

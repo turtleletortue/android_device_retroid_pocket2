@@ -298,7 +298,7 @@ lib/libtouchfilter.so
 lib/libtinyxml.so
 lib/libtinycompress.so
 lib/libtimestretch.so
-lib/libsource.so
+#lib/libsource.so
 lib/libpsensor.so
 lib/libplatformadapter.so
 lib/libmmsdkservice.so
@@ -339,7 +339,7 @@ etc/audio_em.xml
 etc/audio_device.xml
 
 bin/wfd
-bin/vtservice
+#bin/vtservice
 bin/tune2fs
 bin/tiny_swapon
 bin/tiny_swapoff

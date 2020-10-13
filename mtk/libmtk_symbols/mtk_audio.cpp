@@ -42,9 +42,6 @@ extern "C" {
     bool _ZN7android11AudioSystem17stopVoiceUnlockDLEv(){
         return 0;
     }
-    
-    void _ZN7android12AudioPCMxWay4stopEv(){
 
-    }
 }
 

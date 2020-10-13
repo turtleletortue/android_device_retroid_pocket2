@@ -59,4 +59,9 @@ extern "C" {
         return 0;
     }
 
+    void _ZN7android6Camera7connectEiRKNS_8String16Ei() 
+    {
+
+    }
+
 }

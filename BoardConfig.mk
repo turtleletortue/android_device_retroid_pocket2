@@ -99,8 +99,12 @@ LINKER_FORCED_SHIM_LIBS := \
     /system/bin/cameraserver|libshim_camera.so \
     /system/bin/mediaserver|libshim_camera.so \
     /system/bin/program_binary_service|libshim_ui.so \
-    /system/bin/vtservice|libmtk_symbols.so \
     /system/lib/libcam_utils.so|libshim_ui.so \
-    
+    /system/lib/hw/camera.mt6580.so|libshim_ui.so \
+    /system/lib/hw/camera.mt6580.so|libshim_netutils.so \
+    /system/lib/hw/camera.mt6580.so|libshim_bionic.so
+
+#     /system/bin/vtservice|libmtk_symbols.so \
+
 # Headers
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
