@@ -54,8 +54,20 @@ PRODUCT_PACKAGES += \
     libGLES_android \
     libion
 
+# Retroid Toolbox
+PRODUCT_PACKAGES += \
+    Toolbox
+
+# Leanback Launcher
+PRODUCT_PACKAGES += \
+    Leanback
+
+# MORE LAUNCHERS
+PRODUCT_PACKAGES += \
+    Launcher2 
+
 # Misc
-EXCLUDE_SERIF_FONTS := true
+#EXCLUDE_SERIF_FONTS := true
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -77,6 +89,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_CHARACTERISTICS := tablet
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+
+# Overlay
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Dalvik/HWUI
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)

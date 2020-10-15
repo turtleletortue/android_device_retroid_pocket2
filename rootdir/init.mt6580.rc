@@ -1529,5 +1529,5 @@ service ipo_swap /system/bin/ipo_swap
 
 on property:sys.boot_completed=1
 	write /sys/block/mmcblk0/queue/read_ahead_kb 128
-	wm size 640x480
+
 	

@@ -376,6 +376,11 @@ etc/partition_permission.sh
 
 # Keyboard layouts
 usr/keylayout/mtk-kpd.kl
+usr/keylayout/Vendor_de15_Product_de15.kl
+usr/keylayout/Vendor_de15_Product_1234.kl
+usr/keylayout/Vendor_9874_Product_6541.kl
+usr/keylayout/Vendor_2020_Product_0111.kl
+usr/keylayout/ACCDET.kl
 
 # Thermal
 etc/.tp/thermal.conf

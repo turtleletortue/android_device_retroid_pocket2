@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Doze: does this device support STATE_DOZE and STATE_DOZE_SUSPEND?  -->
+    <bool name="doze_display_state_supported">true</bool>
+    <!-- Doze: should the pickup sensor be used as a pulse signal? -->
+    <bool name="doze_pulse_on_pick_up">true</bool>
+    <!-- Doze: can we assume the pickup sensor includes a proximity check? -->
+    <bool name="doze_pickup_performs_proximity_check">false</bool>
+
+    <bool name="doze_proximity_check_before_pulse">true</bool>
+    <!-- Should "4G" be shown instead of "LTE" when the network is NETWORK_TYPE_LTE? -->
+    <bool name="config_show4GForLTE">false</bool>
+    <bool name="enable_volume_ui">true</bool>
+</resources>
+
