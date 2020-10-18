@@ -69,6 +69,10 @@ PRODUCT_PACKAGES += \
 # Misc
 #EXCLUDE_SERIF_FONTS := true
 
+# OTA Update Setup
+PRODUCT_PROPERTY_OVERRIDES += \
+    cm.updater.uri=https://raw.githubusercontent.com/turtleletortue/lineage_ota/cm-14.1/lineageos_pocket2.json
+
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
