@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Set the automatic brightness mode on by default -->
-    <bool name="def_screen_brightness_automatic_mode">true</bool>
+    <!-- Set the automatic brightness mode off by default -->
+    <bool name="def_screen_brightness_automatic_mode">false</bool>
 </resources>
 

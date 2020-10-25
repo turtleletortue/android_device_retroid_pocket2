@@ -8,8 +8,6 @@
 
 
 
-
-
 /devices/mtk-msdc.0/11120000.msdc0* auto vfat defaults voldmanaged=sdcard0:auto
 /devices/mtk-msdc.0/11130000.msdc1* auto auto defaults voldmanaged=sdcard1:auto
 
