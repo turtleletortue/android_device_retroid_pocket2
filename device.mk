@@ -66,9 +66,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Launcher2 
 
-# Misc
-#EXCLUDE_SERIF_FONTS := true
-
 # OTA Update Setup
 #PRODUCT_PROPERTY_OVERRIDES += \
 #    cm.updater.uri=https://raw.githubusercontent.com/turtleletortue/lineage_ota/cm-14.1/lineageos_pocket2.json

@@ -24,7 +24,6 @@ TARGET_KERNEL_CONFIG := real6580_weg_m_defconfig
 BOARD_KERNEL_IMAGE_NAME := zImage-dtb
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := $(shell pwd)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin/arm-eabi-
 BOARD_MKBOOTIMG_ARGS := --pagesize 2048 --base 0x80000000 --kernel_offset 0x00008000 --ramdisk_offset 0x04000000 --second_offset 0x00f00000 --tags_offset 0x0e000000 --cmdline "bootopt=64S3,32S1,32S1 androidboot.selinux=permissive"
-#TARGET_PREBUILT_KERNEL := device/retroid/pocket2/kernel
 
 # Images
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -71,6 +70,11 @@ BOARD_HAVE_BLUETOOTH_MTK := true
 BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/retroid/pocket2/bluetooth
 
+# Bootanimation
+TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
+TARGET_BOOTANIMATION_PRELOAD := true
+TARGET_BOOTANIMATION_TEXTURE_CACHE := true
+
 # Shims
 TARGET_LDPRELOAD += libmtk_symbols.so
 
@@ -103,8 +107,6 @@ LINKER_FORCED_SHIM_LIBS := \
     /system/lib/hw/camera.mt6580.so|libshim_ui.so \
     /system/lib/hw/camera.mt6580.so|libshim_netutils.so \
     /system/lib/hw/camera.mt6580.so|libshim_bionic.so
-
-#     /system/bin/vtservice|libmtk_symbols.so \
 
 # Headers
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
