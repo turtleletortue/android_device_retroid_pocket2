@@ -73,8 +73,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp,adb \
     ro.config.low_ram=true \
-    persist.service.adb.enable=1  \
-    ro.adb.secure=0 \
 
 # Permissions
 PRODUCT_COPY_FILES += \

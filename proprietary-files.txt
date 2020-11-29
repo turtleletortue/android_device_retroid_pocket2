@@ -398,3 +398,7 @@ etc/media_codecs_google_video_le.xml
 etc/media_codecs_google_audio.xml
 etc/audio_policy.conf
 
+# Fix SD Corruption issue
+bin/sgdisk
+# Note, replace vold in vendor with the vold from Blu Studio Max
+bin/vold
