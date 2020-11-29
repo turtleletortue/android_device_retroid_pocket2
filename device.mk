@@ -64,7 +64,7 @@ PRODUCT_PACKAGES += \
 
 # MORE LAUNCHERS
 PRODUCT_PACKAGES += \
-    Launcher2 
+    Launcher3
 
 # OTA Update Setup
 #PRODUCT_PROPERTY_OVERRIDES += \
