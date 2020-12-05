@@ -402,3 +402,7 @@ etc/audio_policy.conf
 bin/sgdisk
 # Note, replace vold in vendor with the vold from Blu Studio Max
 bin/vold|77d4840cc331d7a677668c09885c62ef784354c8
+
+# Retroid startup files
+bin/boot.sh
+bin/startup.sh
