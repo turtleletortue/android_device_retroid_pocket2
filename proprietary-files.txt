@@ -92,7 +92,7 @@ lib/libvcodec_cap.so
 lib/libmsbc_mtk.so
 lib/libcam.device1.so
 lib/libmtk_mmutils.so
-lib/libaudiocustparam.so
+-lib/libaudiocustparam.so
 lib/libdrmmtkutil.so
 lib/libcamera_metadata.so
 lib/libnvram_platform.so
@@ -113,7 +113,7 @@ lib/libcam_platform.so
 lib/libbessurround_mtk.so
 lib/libstagefrighthw.so
 lib/libmatv_cust.so
-lib/libdpframework.so
+-lib/libdpframework.so
 lib/libterservice.so
 lib/libjtranscode.so
 lib/libmp4dec_sa.ca7.so
