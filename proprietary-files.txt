@@ -401,4 +401,4 @@ etc/audio_policy.conf
 # Fix SD Corruption issue
 bin/sgdisk
 # Note, replace vold in vendor with the vold from Blu Studio Max
-bin/vold
+bin/vold|77d4840cc331d7a677668c09885c62ef784354c8
