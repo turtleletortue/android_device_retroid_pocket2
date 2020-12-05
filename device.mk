@@ -54,9 +54,10 @@ PRODUCT_PACKAGES += \
     libGLES_android \
     libion
 
-# Retroid Toolbox
+# Retroid Apps
 PRODUCT_PACKAGES += \
-    Toolbox
+    Toolbox \
+    RsMappingLite
 
 # Leanback Launcher
 PRODUCT_PACKAGES += \
