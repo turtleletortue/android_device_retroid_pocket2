@@ -42,9 +42,6 @@ on init
 
     mkdir /mnt/cd-rom 0000 system system
 
-# Change ION driver permission
-    chmod 0666 /dev/ion
-
 # change lk_env permission
     chown root system /proc/lk_env
     chmod 0660 /proc/lk_env
@@ -81,7 +78,7 @@ on fs
     write /proc/bootprof "INIT:Mount_START"
     mount_all /fstab.mt6580
     exec /system/bin/tune2fs -O has_journal -u 10010 -r 4096 /dev/block/platform/mtk-msdc.0/11120000.msdc0/by-name/userdata
-	exec /system/bin/sh /system/bin/boot.sh
+	exec /system/bin/sh /system/bin/startup.sh
     write /proc/bootprof "INIT:Mount_END"
 
 on fs
@@ -1529,5 +1526,5 @@ service ipo_swap /system/bin/ipo_swap
 
 on property:sys.boot_completed=1
 	write /sys/block/mmcblk0/queue/read_ahead_kb 128
-
+	wm size 640x480
 	
