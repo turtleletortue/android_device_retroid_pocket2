@@ -72,7 +72,7 @@ PRODUCT_PACKAGES += \
 #    cm.updater.uri=https://raw.githubusercontent.com/turtleletortue/lineage_ota/cm-14.1/lineageos_pocket2.json
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp,adb \
+    persist.sys.usb.config=mtp \
     ro.config.low_ram=true \
 
 # Permissions
