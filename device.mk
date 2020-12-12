@@ -63,9 +63,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Leanback
 
-# MORE LAUNCHERS
+# Android stock launcher
 PRODUCT_PACKAGES += \
     Launcher3
+
+# RePoLa (community, open source launcher)
+PRODUCT_PACKAGES += \
+    RePoLa
 
 # OTA Update Setup
 #PRODUCT_PROPERTY_OVERRIDES += \
