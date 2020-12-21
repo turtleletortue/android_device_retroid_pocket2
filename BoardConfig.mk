@@ -36,6 +36,8 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 
 # EGL
 USE_OPENGL_RENDERER := true
+BOARD_EGL_WORKAROUND_BUG_10194508 := true
+TARGET_REQUIRES_SYNCHRONOUS_SETSURFACE := true
 
 # Wifi
 WPA_SUPPLICANT_VERSION := VER_0_8_X
@@ -54,6 +56,9 @@ MTK_HARDWARE := true
 
 # Charging
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/BOOT/BOOT/boot/boot_mode
+BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_SHOW_PERCENTAGE := true
 
 # Recovery resources
 TARGET_RECOVERY_FSTAB := device/retroid/pocket2/rootdir/recovery.fstab
@@ -106,7 +111,9 @@ LINKER_FORCED_SHIM_LIBS := \
     /system/lib/libcam_utils.so|libshim_ui.so \
     /system/lib/hw/camera.mt6580.so|libshim_ui.so \
     /system/lib/hw/camera.mt6580.so|libshim_netutils.so \
-    /system/lib/hw/camera.mt6580.so|libshim_bionic.so
+    /system/lib/hw/camera.mt6580.so|libshim_bionic.so \
+    /system/bin/kpoc_charger|liblog_mtk.so \
+    
 
 # Headers
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
