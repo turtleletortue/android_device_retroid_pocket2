@@ -32,4 +32,6 @@ git reset --hard && git clean -fd
 cd ../..
 cd packages/apps/Trebuchet
 git reset --hard && git clean -fd
+cd ../SetupWizard
+git reset --hard && git clean -fd
 cd ../../..

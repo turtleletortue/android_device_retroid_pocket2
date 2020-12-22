@@ -3,9 +3,13 @@ cd ../../../..
 cd packages/apps/Settings
 patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/Settings/0001-Remove-encryption-option.patch
 patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/Settings/0002-add-MiraVision-in-Settings.patch
+git clean -f -d
 cd ../Trebuchet
 patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/Trebuchet/0001-Allow-Launcher3-and-Trebuchet-to-coexist.patch
-git clean -f -d
+cd ../SetupWizard
+patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/SetupWizard/0001-Remove-Emergency-Call-Option.patch
+patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/SetupWizard/0002-pocket2-Resize-Screen-Resolution-to-640x480.patch
+patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/SetupWizard/0003-pocket2-Set-Double-Click-Home-as-App-Switcher.patch
 cd ../../..
 cd system/core
 patch -p1 < ../../device/retroid/pocket2/patches/system/core/0001-Fix-Liblog-printif.patch
