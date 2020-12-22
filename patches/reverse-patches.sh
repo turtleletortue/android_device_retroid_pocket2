@@ -30,3 +30,6 @@ cd ../..
 cd external/wpa_supplicant_8
 git reset --hard && git clean -fd
 cd ../..
+cd packages/apps/Trebuchet
+git reset --hard && git clean -fd
+cd ../../..

@@ -3,6 +3,8 @@ cd ../../../..
 cd packages/apps/Settings
 patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/Settings/0001-Remove-encryption-option.patch
 patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/Settings/0002-add-MiraVision-in-Settings.patch
+cd ../Trebuchet
+patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/Trebuchet/0001-Allow-Launcher3-and-Trebuchet-to-coexist.patch
 git clean -f -d
 cd ../../..
 cd system/core
