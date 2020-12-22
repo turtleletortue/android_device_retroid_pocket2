@@ -1,0 +1,414 @@
+From 5d0a5291c0b99de6c46be3f5199ad7ec2f31a7a0 Mon Sep 17 00:00:00 2001
+From: LineageOS-MTK <luzejij@binka.me>
+Date: Mon, 9 Oct 2017 23:54:00 +0300
+Subject: [PATCH 1/4 ] Fix BatteryStatsService 1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Fix:
+BatteryStatsService: Timeout reading modem stats
+BatteryStatsService: power: Missing API
+MediaPlayer-JNI: JNIMediaPlayerFactory: bIsQCMediaPlayerPresent 0
+NetdConnector: Communications error: java.io.IOException: Connection refused
+NetdConnector: Error in NativeDaemonConnector: java.io.IOException: Connection refused
+NetdConnector: NDC Command ...
+NetdConnector: Error handling '613 IfaceClass idle (null)':
+java.lang.NumberFormatException: For input string: "(null)"
+---
+ .../core/java/com/android/server/am/BatteryStatsService.java | 12 ------------
+ .../core/jni/com_android_server_am_BatteryStatsService.cpp   |  6 ------
+ 2 files changed, 18 deletions(-)
+
+diff --git a/services/core/java/com/android/server/am/BatteryStatsService.java b/services/core/java/com/android/server/am/BatteryStatsService.java
+index e6241c5..9d0c338 100644
+--- a/services/core/java/com/android/server/am/BatteryStatsService.java
++++ b/services/core/java/com/android/server/am/BatteryStatsService.java
+@@ -1442,7 +1442,6 @@ public final class BatteryStatsService extends IBatteryStats.Stub
+     void updateExternalStatsSync(final String reason, int updateFlags) {
+         SynchronousResultReceiver wifiReceiver = null;
+         SynchronousResultReceiver bluetoothReceiver = null;
+-        SynchronousResultReceiver modemReceiver = null;
+ 
+         synchronized (mExternalStatsLock) {
+             if (mContext == null) {
+@@ -1478,11 +1477,6 @@ public final class BatteryStatsService extends IBatteryStats.Stub
+                 if (mTelephony == null) {
+                     mTelephony = TelephonyManager.from(mContext);
+                 }
+-
+-                if (mTelephony != null) {
+-                    modemReceiver = new SynchronousResultReceiver();
+-                    mTelephony.requestModemActivityInfo(modemReceiver);
+-                }
+             }
+ 
+             WifiActivityEnergyInfo wifiInfo = null;
+@@ -1500,12 +1494,6 @@ public final class BatteryStatsService extends IBatteryStats.Stub
+                 Slog.w(TAG, "Timeout reading bt stats");
+             }
+ 
+-            try {
+-                modemInfo = awaitControllerInfo(modemReceiver);
+-            } catch (TimeoutException e) {
+-                Slog.w(TAG, "Timeout reading modem stats");
+-            }
+-
+             synchronized (mStats) {
+                 mStats.addHistoryEventLocked(
+                         SystemClock.elapsedRealtime(),
+diff --git a/services/core/jni/com_android_server_am_BatteryStatsService.cpp b/services/core/jni/com_android_server_am_BatteryStatsService.cpp
+index ecdc71e..daa6444 100644
+--- a/services/core/jni/com_android_server_am_BatteryStatsService.cpp
++++ b/services/core/jni/com_android_server_am_BatteryStatsService.cpp
+@@ -191,12 +191,6 @@ static jint getPlatformLowPowerStats(JNIEnv* env, jobject /* clazz */, jobject o
+         goto error;
+     }
+ 
+-    if (! (gPowerModule->get_platform_low_power_stats && gPowerModule->get_number_of_platform_modes
+-       && gPowerModule->get_voter_list)) {
+-        ALOGE("%s: Missing API", POWER_HARDWARE_MODULE_ID);
+-        goto error;
+-    }
+-
+     if (gPowerModule->get_number_of_platform_modes) {
+         num_modes = gPowerModule->get_number_of_platform_modes(gPowerModule);
+     }
+-- 
+2.7.4
+
+From f6e18e90e5115a6e780fa25524b48499940dbc02 Mon Sep 17 00:00:00 2001
+From: LineageOS-MTK <luzejij@binka.me>
+Date: Mon, 9 Oct 2017 23:50:42 +0300
+Subject: [PATCH 2/4 ] Fix MediaPlayer-JNI
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ media/java/android/media/MediaFile.java |   4 +-
+ media/jni/android_media_MediaPlayer.cpp | 168 +-------------------------------
+ 2 files changed, 5 insertions(+), 167 deletions(-)
+
+diff --git a/media/java/android/media/MediaFile.java b/media/java/android/media/MediaFile.java
+index aa2bd57..5cb45ca 100644
+--- a/media/java/android/media/MediaFile.java
++++ b/media/java/android/media/MediaFile.java
+@@ -117,10 +117,9 @@ public class MediaFile {
+     public static final int FILE_TYPE_PLS      = 42;
+     public static final int FILE_TYPE_WPL      = 43;
+     public static final int FILE_TYPE_HTTPLIVE = 44;
+-    public static final int FILE_TYPE_DASH     = 45;
+ 
+     private static final int FIRST_PLAYLIST_FILE_TYPE = FILE_TYPE_M3U;
+-    private static final int LAST_PLAYLIST_FILE_TYPE = FILE_TYPE_DASH;
++    private static final int LAST_PLAYLIST_FILE_TYPE = FILE_TYPE_HTTPLIVE;
+ 
+     // Drm file types
+     public static final int FILE_TYPE_FL      = 51;
+@@ -289,7 +288,6 @@ public class MediaFile {
+         addFileType("MPEG", FILE_TYPE_MP2PS, "video/mp2p");
+         addFileType("DIVX", FILE_TYPE_DIVX, "video/divx");
+         addFileType("FLV", FILE_TYPE_FLV, "video/flv");
+-        addFileType("MPD", FILE_TYPE_DASH, "application/dash+xml");
+         addFileType("QCP", FILE_TYPE_QCP, "audio/qcelp");
+         addFileType("AC3", FILE_TYPE_AC3, "audio/ac3");
+         addFileType("EC3", FILE_TYPE_EC3, "audio/eac3");
+diff --git a/media/jni/android_media_MediaPlayer.cpp b/media/jni/android_media_MediaPlayer.cpp
+index 5bc45ff..2fb1a3b 100644
+--- a/media/jni/android_media_MediaPlayer.cpp
++++ b/media/jni/android_media_MediaPlayer.cpp
+@@ -49,7 +49,6 @@
+ #include <gui/Surface.h>
+ #include <binder/IPCThreadState.h>
+ #include <binder/IServiceManager.h>
+-#include <dlfcn.h>
+ 
+ #include "android_util_Binder.h"
+ // ----------------------------------------------------------------------------
+@@ -138,153 +137,6 @@ void JNIMediaPlayerListener::notify(int msg, int ext1, int ext2, const Parcel *o
+     }
+ }
+ 
+-
+-static const char *EXTMEDIAJNI_LIB_NAME             = "libextmedia_jni.so";
+-static const char *kCreateJNIExtMediaPlayerListener = "CreateJNIExtMediaPlayerListener";
+-static const char *kCheckExtMedia                   = "checkExtMedia";
+-static const char *kCreateNativeQCMediaPlayer       = "CreateNativeQCMediaPlayer";
+-typedef MediaPlayerListener* (*CreateJNIExtMediaPlayerListenerFn)(JNIEnv *, jobject, jobject, sp<MediaPlayerListener> listener);
+-typedef bool (*CheckExtMediaFn)(JNIEnv *env, jobject);
+-typedef MediaPlayer* (*CreateNativeQCMediaPlayerFn)();
+-
+-
+-
+-class JNIMediaPlayerFactory {
+-  public:
+-    JNIMediaPlayerFactory() {};
+-    static bool CheckAndCreateExtMediaPlayer(JNIEnv *env, jobject thiz, jobject weak_this, sp<MediaPlayerListener> &listener, sp<MediaPlayer> &mp);
+-  private:
+-    static void *mLibHandle;
+-    static void loadLib();
+-
+-    static CreateJNIExtMediaPlayerListenerFn  loadJNIExtMediaPlayerListener();
+-    static CreateJNIExtMediaPlayerListenerFn sExtDashListnerFnPtr;
+-
+-    static CheckExtMediaFn sExtMediaFn;
+-    static CheckExtMediaFn loadExtMedia();
+-
+-    static CreateNativeQCMediaPlayerFn  sNativeQCMediaPlayerFn;
+-    static CreateNativeQCMediaPlayerFn loadNativeQCMediaPlayer();
+-
+-    static sp<MediaPlayerListener> createExtMediaPlayerListener(JNIEnv *env, jobject thiz, jobject weak_this, sp<MediaPlayerListener> listener);
+-    static bool checkExtMedia(JNIEnv *env, jobject thiz);
+-    static void CreateNativeQCMediaPlayer(sp<MediaPlayer> &mp);
+-};
+-
+-void *JNIMediaPlayerFactory::mLibHandle = NULL;
+-
+-CreateJNIExtMediaPlayerListenerFn JNIMediaPlayerFactory::sExtDashListnerFnPtr =
+-        JNIMediaPlayerFactory::loadJNIExtMediaPlayerListener();
+-
+-CheckExtMediaFn JNIMediaPlayerFactory::sExtMediaFn =
+-        JNIMediaPlayerFactory::loadExtMedia();
+-
+-CreateNativeQCMediaPlayerFn JNIMediaPlayerFactory::sNativeQCMediaPlayerFn =
+-        JNIMediaPlayerFactory::loadNativeQCMediaPlayer();
+-
+-
+-void JNIMediaPlayerFactory::loadLib()
+-{
+-    if (!mLibHandle) {
+-        mLibHandle = ::dlopen(EXTMEDIAJNI_LIB_NAME, RTLD_LAZY);
+-        if (!mLibHandle) {
+-            ALOGV("%s", dlerror());
+-            return;
+-        }
+-    ALOGV("Opened %s", EXTMEDIAJNI_LIB_NAME);
+-  }
+-}
+-
+-CreateJNIExtMediaPlayerListenerFn JNIMediaPlayerFactory::loadJNIExtMediaPlayerListener()
+-{
+-    loadLib();
+-    CreateJNIExtMediaPlayerListenerFn  pCreateExtDashListnerFnPtr = NULL;
+-    if (mLibHandle != NULL) {
+-        pCreateExtDashListnerFnPtr = (CreateJNIExtMediaPlayerListenerFn)
+-            dlsym(mLibHandle, kCreateJNIExtMediaPlayerListener);
+-        if (pCreateExtDashListnerFnPtr == NULL) {
+-            ALOGW("Failed to load symbol %s : %s", kCreateJNIExtMediaPlayerListener, dlerror());
+-        }
+-    }
+-    return pCreateExtDashListnerFnPtr;
+-}
+-
+-CheckExtMediaFn JNIMediaPlayerFactory::loadExtMedia()
+-{
+-    loadLib();
+-    CheckExtMediaFn pCheckExtMediaFnPtr = NULL;
+-    if (mLibHandle != NULL) {
+-        pCheckExtMediaFnPtr = (CheckExtMediaFn)dlsym(mLibHandle, kCheckExtMedia);
+-        if (pCheckExtMediaFnPtr == NULL) {
+-            ALOGW("Failed to load symbol %s : %s", kCheckExtMedia, dlerror());
+-        }
+-    }
+-    return pCheckExtMediaFnPtr;
+-}
+-
+-CreateNativeQCMediaPlayerFn JNIMediaPlayerFactory::loadNativeQCMediaPlayer()
+-{
+-    loadLib();
+-    CreateNativeQCMediaPlayerFn pCreateNativeQCMediaPlayerFnPtr = NULL;
+-    if (mLibHandle != NULL) {
+-        pCreateNativeQCMediaPlayerFnPtr = (CreateNativeQCMediaPlayerFn)
+-            dlsym(mLibHandle, kCreateNativeQCMediaPlayer);
+-        if (pCreateNativeQCMediaPlayerFnPtr == NULL) {
+-            ALOGW("Failed to load symbol %s : %s", kCreateNativeQCMediaPlayer, dlerror());
+-        }
+-    }
+-    return pCreateNativeQCMediaPlayerFnPtr;
+-}
+-
+-
+-sp<MediaPlayerListener> JNIMediaPlayerFactory::createExtMediaPlayerListener(JNIEnv *env, jobject thiz, jobject weak_this, sp<MediaPlayerListener> listener)
+-{
+-    if (checkExtMedia(env, thiz)) {
+-        if (sExtDashListnerFnPtr ) {
+-            listener = (*sExtDashListnerFnPtr)(env, thiz, weak_this, listener);
+-            if (listener != NULL) {
+-                ALOGE("JNIMediaPlayerFactory: createExtMediaPlayerListener : success");
+-            }
+-        }
+-    }
+-    return listener;
+-}
+-
+-void JNIMediaPlayerFactory::CreateNativeQCMediaPlayer(sp<MediaPlayer> &mp)
+-{
+-    if (sNativeQCMediaPlayerFn) {
+-        mp = (*sNativeQCMediaPlayerFn)();
+-        if (mp != NULL) {
+-            ALOGE("JNIMediaPlayerFactory:  CreateNativeQCMediaPlayer : Success");
+-        }
+-    }
+-}
+-
+-
+-bool JNIMediaPlayerFactory::checkExtMedia(JNIEnv *env, jobject thiz)
+-{
+-    bool bIsQCMediaPlayerPresent = false;
+-    if (sExtMediaFn) {
+-        bIsQCMediaPlayerPresent = (*sExtMediaFn)(env, thiz);
+-    }
+-    ALOGE("JNIMediaPlayerFactory: bIsQCMediaPlayerPresent %d", bIsQCMediaPlayerPresent);
+-    return bIsQCMediaPlayerPresent;
+-}
+-
+-bool JNIMediaPlayerFactory::CheckAndCreateExtMediaPlayer(
+-         JNIEnv *env, jobject thiz, jobject weak_this, sp<MediaPlayerListener> &listener, sp<MediaPlayer> &mp)
+-{
+-    bool bOk = false;
+-    listener = createExtMediaPlayerListener(env, thiz, weak_this, listener);
+-    if (listener != NULL && checkExtMedia(env,thiz)) {
+-        CreateNativeQCMediaPlayer(mp);
+-        if (mp != NULL) {
+-            bOk = true;
+-        }
+-    }
+-    return bOk;
+-}
+-
+ // ----------------------------------------------------------------------------
+ 
+ static sp<MediaPlayer> getMediaPlayer(JNIEnv* env, jobject thiz)
+@@ -1016,26 +868,14 @@ static void
+ android_media_MediaPlayer_native_setup(JNIEnv *env, jobject thiz, jobject weak_this)
+ {
+     ALOGV("native_setup");
+-
+-    sp<MediaPlayer> mp = NULL;
+-
+-    bool bOk = false;
+-    JNIMediaPlayerFactory *jniMediaPlayerFactory = new JNIMediaPlayerFactory();
+-
+-    sp<MediaPlayerListener> listener = new JNIMediaPlayerListener(env, thiz, weak_this);
+-
+-    if (jniMediaPlayerFactory) {
+-        bOk = jniMediaPlayerFactory->CheckAndCreateExtMediaPlayer(env, thiz, weak_this, listener, mp);
+-        delete(jniMediaPlayerFactory);
+-    }
+-
+-    if (!bOk){
+-        mp = new MediaPlayer();
+-    }
++    sp<MediaPlayer> mp = new MediaPlayer();
+     if (mp == NULL) {
+         jniThrowException(env, "java/lang/RuntimeException", "Out of memory");
+         return;
+     }
++
++    // create new listener and give it to MediaPlayer
++    sp<JNIMediaPlayerListener> listener = new JNIMediaPlayerListener(env, thiz, weak_this);
+     mp->setListener(listener);
+ 
+     // Stow our new C++ MediaPlayer in an opaque field in the Java object.
+-- 
+2.7.4
+
+From 7e10247080e699dca25e24c0ddb3dda30e89d8cb Mon Sep 17 00:00:00 2001
+From: LineageOS-MTK <luzejij@binka.me>
+Date: Wed, 4 Oct 2017 10:06:53 +0300
+Subject: [PATCH 3/4 ] Fix NetdConnector
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ .../java/com/android/server/NativeDaemonConnector.java  | 17 +++++++++++++----
+ .../com/android/server/NetworkManagementService.java    |  2 +-
+ 2 files changed, 14 insertions(+), 5 deletions(-)
+
+diff --git a/services/core/java/com/android/server/NativeDaemonConnector.java b/services/core/java/com/android/server/NativeDaemonConnector.java
+index f5f7732..cc1aedc 100644
+--- a/services/core/java/com/android/server/NativeDaemonConnector.java
++++ b/services/core/java/com/android/server/NativeDaemonConnector.java
+@@ -73,7 +73,7 @@ final class NativeDaemonConnector implements Runnable, Handler.Callback, Watchdo
+     private AtomicInteger mSequenceNumber;
+ 
+     private static final long DEFAULT_TIMEOUT = 1 * 60 * 1000; /* 1 minute */
+-    private static final long WARN_EXECUTE_DELAY_MS = 500; /* .5 sec */
++    private static final long WARN_EXECUTE_DELAY_MS = 5500; /* 5.5 sec */
+ 
+     /** Lock held whenever communicating with native daemon. */
+     private final Object mDaemonLock = new Object();
+@@ -131,12 +131,22 @@ final class NativeDaemonConnector implements Runnable, Handler.Callback, Watchdo
+     public void run() {
+         mCallbackHandler = new Handler(mLooper, this);
+ 
++        long startTime = 0;
+         while (true) {
+             try {
+                 listenToSocket();
+             } catch (Exception e) {
+-                loge("Error in NativeDaemonConnector: " + e);
+-                SystemClock.sleep(5000);
++                long currentTime = SystemClock.uptimeMillis();
++                long elapsedTime = currentTime - startTime;
++
++                if (elapsedTime >= 5000 && startTime > 0) {
++                    startTime = 0;
++                }
++
++                if (startTime == 0)
++                    startTime = currentTime;
++
++                SystemClock.sleep(100);
+             }
+         }
+     }
+@@ -267,7 +277,6 @@ final class NativeDaemonConnector implements Runnable, Handler.Callback, Watchdo
+                 }
+             }
+         } catch (IOException ex) {
+-            loge("Communications error: " + ex);
+             throw ex;
+         } finally {
+             synchronized (mDaemonLock) {
+diff --git a/services/core/java/com/android/server/NetworkManagementService.java b/services/core/java/com/android/server/NetworkManagementService.java
+index 4099d93..13b0c7c 100644
+--- a/services/core/java/com/android/server/NetworkManagementService.java
++++ b/services/core/java/com/android/server/NetworkManagementService.java
+@@ -925,7 +925,7 @@ public class NetworkManagementService extends INetworkManagementService.Stub
+                         timestampNanos = SystemClock.elapsedRealtimeNanos();
+                     }
+                     boolean isActive = cooked[2].equals("active");
+-                    notifyInterfaceClassActivity(Integer.parseInt(cooked[3]),
++                    notifyInterfaceClassActivity(cooked[3] == null ? 0 : Integer.parseInt(cooked[3]),
+                             isActive ? DataConnectionRealTimeInfo.DC_POWER_STATE_HIGH
+                             : DataConnectionRealTimeInfo.DC_POWER_STATE_LOW,
+                             timestampNanos, processUid, false);
+-- 
+2.7.4
+
+From d9a0e0741e61b041a331fdd076d42951e0f15f26 Mon Sep 17 00:00:00 2001
+From: adi766 <adityakumarteli7846@gmail.com>
+Date: Sat, 23 Sep 2017 16:53:20 +0000
+Subject: [PATCH 4/4 ] Remove BatteryStatsService (2) error in log
+
+---
+ services/core/java/com/android/server/am/BatteryStatsService.java   | 1 -
+ 1 files changed, 0 insertions(+), 1 deletion(-)
+ 
+diff --git a/services/core/java/com/android/server/am/BatteryStatsService.java b/services/core/java/com/android/server/am/BatteryStatsService.java
+index ff13125..e6241c5 100644
+--- a/services/core/java/com/android/server/am/BatteryStatsService.java
++++ b/services/core/java/com/android/server/am/BatteryStatsService.java
+@@ -1422,7 +1422,6 @@ public final class BatteryStatsService extends IBatteryStats.Stub
+                 return data;
+             }
+         }
+-        Slog.e(TAG, "no controller energy info supplied");
+         return null;
+     }
+ 
+-- 
+2.7.4

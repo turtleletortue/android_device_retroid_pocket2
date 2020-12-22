@@ -49,6 +49,10 @@ PRODUCT_PACKAGES += \
     libshim_netutils \
     libshim_camera
 
+# MiraVision
+PRODUCT_PACKAGES += \
+    MiraVision
+
 # Graphics
 PRODUCT_PACKAGES += \
     libGLES_android \

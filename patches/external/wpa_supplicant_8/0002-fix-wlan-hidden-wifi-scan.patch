@@ -1,0 +1,31 @@
+From 3fbb3ea98aa00201db6de8f30df754c7b98e17c2 Mon Sep 17 00:00:00 2001
+From: seluce <ferris.daehn@outlook.de>
+Date: Thu, 14 Jun 2018 11:52:31 +0200
+Subject: [PATCH] fix wlan hidden wifi scan
+
+Change-Id: I5bec3ad6020e0615a4ea1d67e505b0b07b90fff8
+---
+ src/drivers/driver_nl80211_scan.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/src/drivers/driver_nl80211_scan.c b/src/drivers/driver_nl80211_scan.c
+index c115b6b..7ae625d 100644
+--- a/src/drivers/driver_nl80211_scan.c
++++ b/src/drivers/driver_nl80211_scan.c
+@@ -137,9 +137,10 @@ nl80211_scan_common(struct i802_bss *bss, u8 cmd,
+ 			wpa_hexdump_ascii(MSG_MSGDUMP, "nl80211: Scan SSID",
+ 					  params->ssids[i].ssid,
+ 					  params->ssids[i].ssid_len);
+-			if (nla_put(msg, i + 1, params->ssids[i].ssid_len,
+-				    params->ssids[i].ssid))
+-				goto fail;
++                       if (params->ssids[i].ssid_len)
++                               if (nla_put(msg, i + 1, params->ssids[i].ssid_len,
++                                           params->ssids[i].ssid))
++                                       goto fail;
+ 		}
+ 		nla_nest_end(msg, ssids);
+ 	} else {
+-- 
+2.7.4
+

@@ -1,0 +1,38 @@
+From 7bc25042564c37c0931cf1ffd757dafebfbb1ed1 Mon Sep 17 00:00:00 2001
+From: adi766 <adityakumarteli7846@gmail.com>
+Date: Sat, 23 Sep 2017 07:50:12 +0000
+Subject: [PATCH] Mediatek: Prevent log spamming of audio.
+
+diff --git a/liblog/logger_write.c b/liblog/logger_write.c
+index c7b5a84..aa85dd8 100644
+--- a/liblog/logger_write.c
++++ b/liblog/logger_write.c
+@@ -394,6 +394,26 @@ LIBLOG_ABI_PUBLIC int __android_log_buf_write(int bufID, int prio,
+     if (!tag)
+         tag = "";
+ 
++    // MediaTek: Prevent log spamming of audio / aee.
++    if (!strcmp(tag, "AudioMTKFilterManager") ||
++        !strcmp(tag, "AEE/LIBAEE") ||
++        !strcmp(tag, "AudioMTKStreamOut") ||
++        !strcmp(tag, "AudioVPWStreamIn") ||
++    	!strcmp(tag, "AudioDigitalControl") ||
++        !strcmp(tag, "AudioLoopbackController") ||
++ 	   !strcmp(tag, "AudioMTKVolumeController") ||
++        !strcmp(tag, "AudioDigitalControl") ||
++        !strcmp(tag, "AudioAnalogControl") ||
++        !strcmp(tag, "AudioALSAStreamOut") ||
++        !strcmp(tag, "AudioAnalogReg") ||
++        !strcmp(tag, "AudioPlatformDevice") ||
++        !strcmp(tag, "AudioMachineDevice") ||
++        !strcmp(tag, "MtkAudioLoud") ||
++        !strcmp(tag, "LoopbackManager") ||
++        !strcmp(tag, "AudioALSAPlaybackHandlerBase")) {
++             return 0;
++    }
++
+     /* XXX: This needs to go! */
+     if ((bufID != LOG_ID_RADIO) &&
+          (!strcmp(tag, "HTC_RIL") ||
+-- 
+2.7.4

@@ -1,0 +1,50 @@
+From cac02abb2a59431853362a555530a18727a51f2c Mon Sep 17 00:00:00 2001
+From: seluce <ferris.daehn@outlook.de>
+Date: Thu, 14 Jun 2018 14:07:21 +0200
+Subject: [PATCH] add MiraVision in Settings
+
+Change-Id: Iabcd18171a13e068d97e3a7f16729f95c84ef53c
+---
+ res/values/strings.xml       |  3 +++
+ res/xml/display_settings.xml | 11 +++++++++++
+ 2 files changed, 14 insertions(+)
+
+diff --git a/res/values/strings.xml b/res/values/strings.xml
+index b8121fb..216fd0e 100644
+--- a/res/values/strings.xml
++++ b/res/values/strings.xml
+@@ -14,6 +14,9 @@
+      limitations under the License.
+ -->
+ <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
++    <!-- MiraVision -->
++    <string name="mira_vision_title" translatable="false">MiraVision</string>
++    <string name="mira_vision_summary">Provider the best visual effects</string>
+     <!-- Strings for Dialog yes button -->
+     <string name="yes">"Yes"</string>
+     <!-- Strings for Dialog no button -->
+diff --git a/res/xml/display_settings.xml b/res/xml/display_settings.xml
+index 114921e..5906922 100644
+--- a/res/xml/display_settings.xml
++++ b/res/xml/display_settings.xml
+@@ -20,6 +20,17 @@
+         android:title="@string/display_settings"
+         settings:keywords="@string/keywords_display">
+ 
++        <!-- MiraVision -->
++        <PreferenceScreen
++                android:key="mira_vision"
++                android:title="@string/mira_vision_title"
++                android:summary="@string/mira_vision_summary">
++            <intent
++                    android:action="android.intent.action.MAIN"
++                    android:targetPackage="com.mediatek.miravision.ui"
++                    android:targetClass="com.mediatek.miravision.ui.MiraVisionActivity" />
++        </PreferenceScreen>
++
+     <PreferenceCategory
+             android:key="display"
+             android:title="@string/display_label">
+-- 
+2.7.4
+
