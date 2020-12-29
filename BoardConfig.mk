@@ -20,9 +20,9 @@ TARGET_SCREEN_WIDTH := 480
 # Kernel
 TARGET_KERNEL_ARCH := arm
 TARGET_KERNEL_SOURCE := kernel/retroid/pocket2
-TARGET_KERNEL_CONFIG := real6580_weg_m_defconfig
+TARGET_KERNEL_CONFIG := gbx2000v1_defconfig
 BOARD_KERNEL_IMAGE_NAME := zImage-dtb
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := $(shell pwd)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin/arm-eabi-
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := $(shell pwd)/prebuilts/gcc/linux-x86/arm/gcc-linaro-6.3.1-2017.05-x86_64_arm-eabi/bin/arm-eabi-
 BOARD_MKBOOTIMG_ARGS := --pagesize 2048 --base 0x80000000 --kernel_offset 0x00008000 --ramdisk_offset 0x04000000 --second_offset 0x00f00000 --tags_offset 0x0e000000 --cmdline "bootopt=64S3,32S1,32S1 androidboot.selinux=permissive"
 
 # Images
@@ -32,7 +32,13 @@ BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 836870912
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 5259657216
+BOARD_VENDORIMAGE_PARTITION_SIZE := 536870900
 BOARD_FLASH_BLOCK_SIZE := 131072
+
+# Build Vendor Image
+TARGET_COPY_OUT_VENDOR := vendor
+BOARD_USES_VENDORIMAGE := true
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 
 # EGL
 USE_OPENGL_RENDERER := true
@@ -62,7 +68,7 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 
 # Recovery resources
-TARGET_RECOVERY_FSTAB := device/retroid/pocket2/rootdir/recovery.fstab
+TARGET_RECOVERY_FSTAB := device/retroid/pocket2/rootdir/etc/recovery.fstab
 TARGET_PREBUILT_RECOVERY_KERNEL := device/retroid/pocket2/kernel
 
 # Sepolicy
@@ -82,39 +88,68 @@ TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
 # Shims
-TARGET_LDPRELOAD += libmtk_symbols.so
+#TARGET_LDPRELOAD += libmtk_symbols.so
 
-LINKER_FORCED_SHIM_LIBS := \
-    /system/lib/libdpframework.so|liblog_mtk.so \
-    /system/bin/guiext-server|liblog_mtk.so \
-    /system/bin/pq|liblog_mtk.so \
-    /system/lib/egl/libGLES_mali.so|liblog_mtk.so \
-    /system/lib/libfmcust.so|liblog_mtk.so \
-    /system/xbin/mnld|liblog_mtk.so \
-    /system/bin/mtk_agpsd|liblog_mtk.so \
-    /system/bin/mobile_log_d|liblog_mtk.so \
-    /system/bin/emdlogger1|liblog_mtk.so \
-    /system/bin/boot_logo_updater|liblog_mtk.so \
-    /system/bin/MtkCodecService|liblog_mtk.so \
-    /system/vendor/lib/libwvm.so|libshim_wvm.so \
-	/system/lib/libui_ext.so|libshim_ui.so \
-	/system/lib/libgui_ext.so|libshim_ui.so \
-    /system/bin/xlog|libmtk_symbols.so \
-    /system/bin/program_binary_service|libmtk_symbols.so \
-    /system/lib/libccci_util.so|libmtk_symbols.so \
-    /system/lib/libfs_mgr.so|libmtk_symbols.so \
-    /system/bin/pq|libshim_bionic.so \
-    /system/lib/egl/libGLES_mali.so|libshim_bionic.so \
-    /system/bin/thermal|libshim_netutils.so \
-    /system/bin/cameraserver|libshim_camera.so \
-    /system/bin/mediaserver|libshim_camera.so \
-    /system/bin/program_binary_service|libshim_ui.so \
-    /system/lib/libcam_utils.so|libshim_ui.so \
-    /system/lib/hw/camera.mt6580.so|libshim_ui.so \
-    /system/lib/hw/camera.mt6580.so|libshim_netutils.so \
-    /system/lib/hw/camera.mt6580.so|libshim_bionic.so \
-    /system/bin/kpoc_charger|liblog_mtk.so \
+# SHims
+TARGET_LD_SHIM_LIBS := \
+    /system/bin/program_binary_service|libshim_program_binary_service.so
+
+#LINKER_FORCED_SHIM_LIBS := \
+#    /system/lib/libdpframework.so|liblog_mtk.so \
+#    /system/bin/guiext-server|liblog_mtk.so \
+#    /system/bin/pq|liblog_mtk.so \
+#    /system/lib/egl/libGLES_mali.so|liblog_mtk.so \
+#    /system/lib/libfmcust.so|liblog_mtk.so \
+#    /system/xbin/mnld|liblog_mtk.so \
+#    /system/bin/mtk_agpsd|liblog_mtk.so \
+#    /system/bin/mobile_log_d|liblog_mtk.so \
+#    /system/bin/emdlogger1|liblog_mtk.so \
+#    /system/bin/boot_logo_updater|liblog_mtk.so \
+#    /system/bin/MtkCodecService|liblog_mtk.so \
+#    /system/vendor/lib/libwvm.so|libshim_wvm.so \
+#	/system/lib/libui_ext.so|libshim_ui.so \
+#	/system/lib/libgui_ext.so|libshim_ui.so \
+#    /system/bin/xlog|libmtk_symbols.so \
+#    /system/bin/program_binary_service|libmtk_symbols.so \
+#    /system/lib/libccci_util.so|libmtk_symbols.so \
+#    /system/lib/libfs_mgr.so|libmtk_symbols.so \
+#    /system/bin/pq|libshim_bionic.so \
+#    /system/lib/egl/libGLES_mali.so|libshim_bionic.so \
+#    /system/bin/thermal|libshim_netutils.so \
+#    /system/bin/cameraserver|libshim_camera.so \
+#    /system/bin/mediaserver|libshim_camera.so \
+#    /system/bin/program_binary_service|libshim_ui.so \
+#    /system/lib/libcam_utils.so|libshim_ui.so \
+#    /system/lib/hw/camera.mt6580.so|libshim_ui.so \
+#    /system/lib/hw/camera.mt6580.so|libshim_netutils.so \
+#    /system/lib/hw/camera.mt6580.so|libshim_bionic.so \
+#    /system/bin/kpoc_charger|liblog_mtk.so \
     
+
+# HIDL
+DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/manifest.xml
+DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/compatibility_matrix.xml
+
+# Seccomp policy
+BOARD_SECCOMP_POLICY := $(DEVICE_PATH)/seccomp
 
 # Headers
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
+
+# Gatekeeper
+BOARD_USE_SOFT_GATEKEEPER := true
+
+# Treble
+PRODUCT_FULL_TREBLE_OVERRIDE := true
+PRODUCT_VENDOR_MOVE_ENABLED := true
+PRODUCT_COMPATIBILITY_MATRIX_LEVEL_OVERRIDE := 27
+BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
+
+# MKE2FS
+TARGET_USES_MKE2FS := true
+
+# System Prop
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+
+# Vendor Prop
+TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop

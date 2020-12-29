@@ -1,0 +1,14 @@
+on init
+    #Create nvdata mount point
+    mkdir /vendor/nvdata 0771 system system
+
+on post-fs-data
+    # create basic filesystem structure
+    # mkdir /vendor/nvdata 2770 root system
+    # We chown/chmod /vendor/nvdata again so because mount is run as root + defaults
+    chown root system /vendor/nvdata
+    chmod 2771 /vendor/nvdata
+    mkdir /vendor/nvdata/media 0771 media audio
+
+    # Set SELinux security contexts on upgrade or policy update.
+    restorecon_recursive /vendor/nvdata

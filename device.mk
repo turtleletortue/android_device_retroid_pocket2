@@ -1,11 +1,23 @@
 # Call AOSP packages
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 
+# Android Go defaults
+$(call inherit-product, $(SRC_TARGET_DIR)/product/go_defaults.mk)
+
+# Launched with 8.1
+$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_o_mr1.mk)
+
 # Add all product locales
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Vendor
 $(call inherit-product-if-exists, vendor/retroid/pocket2/pocket2-vendor.mk)
+
+# Hidl
+include $(LOCAL_PATH)/hidl.mk
+
+# Vendor Properties
+include $(LOCAL_PATH)/vendor.mk
 
 # Wifi
 PRODUCT_PACKAGES += \
@@ -26,32 +38,64 @@ PRODUCT_PACKAGES += \
     audio_policy.default \
     audio.a2dp.default \
     audio.usb.default \
-    audio.r_submix.default
+    audio.r_submix.default \
+    audio.r_submix.default \
+    libaudio-resampler \
+    libaudioroute \
+    libtinyalsa \
+    libalsautils \
+    libtinycompress \
+    libtinyxml \
+    tinymix \
+    tinypcminfo \
+    tinycap \
+    tinyplay
 
 # Bluetooth
 PRODUCT_PACKAGES += libbt-vendor
 
-# Ramdisk
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/rootdir,root)
+# etc
+PRODUCT_PACKAGES += \
+    netutils-wrapper-1.0 \
+    librs_jni \
+    libnl_2
+
+# Init files
+PRODUCT_PACKAGES += \
+    init.connectivity.rc \
+    init.modem.rc \
+    init.mt6580.rc \
+    init.project.rc \
+    init.sensor_1_0.rc \
+    multi_init.rc \
+    fstab.mt6580 \
+    ueventd.mt6580.rc \
+    init.mt6580.usb.rc \
+    init.nvdata.rc \
+    init.aee.rc
+
+# .ko
+PRODUCT_PACKAGES += \
+    wmt_drv.ko \
+    wmt_chrdev_wifi.ko \
+    wlan_drv.ko \
+    bt_drv.ko
+
+
+# Shims
+#PRODUCT_PACKAGES += \
+#    liblog_mtk
 
 # Shims
 PRODUCT_PACKAGES += \
-    liblog_mtk
-
-# Shims
-PRODUCT_PACKAGES += \
-    libmtk_symbols \
-    libshim_ui \
-    libshim_wvm \
-    libshim_drm \
-    libshim_bionic \
-    libshim_netutils \
-    libshim_camera
-
-# MiraVision
-PRODUCT_PACKAGES += \
-    MiraVision
+    libshim_program_binary_service
+#    libmtk_symbols \
+#    libshim_ui \
+#    libshim_wvm \
+#    libshim_drm \
+#    libshim_bionic \
+#    libshim_netutils \
+#    libshim_camera
 
 # Graphics
 PRODUCT_PACKAGES += \
@@ -75,12 +119,24 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     RePoLa
 
+# VNDK-SP
+PRODUCT_PACKAGES += \
+    vndk-sp
+
+PRODUCT_PACKAGES += \
+    libnbaio_mono
+
+# DRM
+PRODUCT_PACKAGES += \
+    libdrm \
+    libmockdrmcryptoplugin \
+
 # OTA Update Setup
 #PRODUCT_PROPERTY_OVERRIDES += \
 #    cm.updater.uri=https://raw.githubusercontent.com/turtleletortue/lineage_ota/cm-14.1/lineageos_pocket2.json
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp \
+    persist.sys.usb.config=mtp,adb \
     ro.config.low_ram=true \
 
 # Permissions
@@ -99,6 +155,19 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml
 
+# Seccomp
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/seccomp/mediacodec.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
+    $(LOCAL_PATH)/seccomp/mediaextractor.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediaextractor.policy \
+
+# WiFi
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
+    $(LOCAL_PATH)/configs/wifi/wpa_supplicant.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant.conf \
+    $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
+
+
+
 # Tablet characteristics
 PRODUCT_CHARACTERISTICS := tablet
 
@@ -106,6 +175,9 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+
+# MTKRC
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.mtkrc.path=/vendor/etc/init/hw/
 
 # Dalvik/HWUI
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)

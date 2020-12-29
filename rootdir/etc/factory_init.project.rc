@@ -1,0 +1,36 @@
+mkdir /data/misc/sensors 0664 system system
+
+#service msensord /vendor/bin/msensord
+#    user system
+#    group system
+#    oneshot
+
+service akmd8963 /vendor/bin/akmd8963
+    disabled
+    user system
+    group system
+
+
+on post-fs
+
+
+    
+ 		
+ 
+    
+
+
+    chmod 0660 /dev/spm
+    chown system system /dev/spm
+
+on boot
+
+
+
+
+
+service spm_script /vendor/bin/spm_loader
+    user system
+    group system
+    oneshot
+

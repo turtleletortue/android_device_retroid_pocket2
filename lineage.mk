@@ -2,7 +2,7 @@
 $(call inherit-product, device/retroid/pocket2/device.mk)
 
 # Call tablet config
-$(call inherit-product, vendor/cm/config/common_mini_tablet_wifionly.mk)
+$(call inherit-product, vendor/lineage/config/common_mini_tablet_wifionly.mk)
 
 # Device branding for AOSP
 PRODUCT_BRAND := google
