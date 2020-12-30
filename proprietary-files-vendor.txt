@@ -648,11 +648,3 @@ vendor/lib/hw/audio_policy.stub.so
 # Submix audio policy config
 vendor/etc/r_submix_audio_policy_configuration.xml
 
-vendor/etc/init/aee_aedv.rc
-
-# Aee stuff (for now)
-vendor/bin/aee_aedv
-vendor/bin/aee_archivev
-vendor/bin/aee_core_forwarder
-vendor/bin/aee_dumpstatev
-vendor/bin/aeev
