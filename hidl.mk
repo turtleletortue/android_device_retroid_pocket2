@@ -53,9 +53,9 @@ PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0-service
 
 # Camera
-PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.4-service \
-    android.hardware.camera.provider@2.4-impl
+#PRODUCT_PACKAGES += \
+#    android.hardware.camera.provider@2.4-service \
+#    android.hardware.camera.provider@2.4-impl
 
 # Memtrack
 PRODUCT_PACKAGES += \

@@ -36,15 +36,6 @@
         </interface>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.camera.provider</name>
-        <transport>hwbinder</transport>
-        <version>2.4</version>
-        <interface>
-            <name>ICameraProvider</name>
-            <instance>internal/0</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
         <name>android.hardware.cas</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -241,15 +232,6 @@
         <interface>
             <name>ISupplicant</name>
             <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.mediatek.hardware.camera.ccap</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ICCAPControl</name>
-            <instance>internal/0</instance>
         </interface>
     </hal>
     <hal format="hidl">
