@@ -232,3 +232,7 @@ bin/boot.sh
 # Keylayouts
 usr/keylayout/mtk-kpd.kl
 usr/keylayout/Vendor_2020_Product_0111.kl
+
+# Audio
+etc/audio_effects.conf
+

@@ -648,3 +648,16 @@ vendor/lib/hw/audio_policy.stub.so
 # Submix audio policy config
 vendor/etc/r_submix_audio_policy_configuration.xml
 
+# Media profiles
+vendor/etc/media_profiles.xml
+
+# Audio configs
+vendor/etc/a2dp_audio_policy_configuration.xml
+vendor/etc/audio_device.xml
+vendor/etc/audio_em.xml
+vendor/etc/audio_policy.conf
+vendor/etc/audio_policy_configuration.xml
+vendor/etc/audio_policy_volumes.xml
+vendor/etc/r_submix_audio_policy_configuration.xml
+vendor/etc/usb_audio_policy_configuration.xml
+
