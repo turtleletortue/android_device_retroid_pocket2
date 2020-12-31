@@ -71,8 +71,7 @@ PRODUCT_PACKAGES += \
     fstab.mt6580 \
     ueventd.mt6580.rc \
     init.mt6580.usb.rc \
-    init.nvdata.rc \
-    init.aee.rc
+    init.nvdata.rc 
 
 # .ko
 PRODUCT_PACKAGES += \
