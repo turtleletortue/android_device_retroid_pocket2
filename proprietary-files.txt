@@ -213,9 +213,9 @@ lib/libjni_eglfence_mtk.so
 lib/libccci_util_sys.so
 lib/libBinderServiceP.so:vendor/lib/libBinderServiceP.so
 lib/libaudio-resampler.so
-lib/libartd.so
-lib/libartd-compiler.so
-lib/libartd-dexlayout.so
+#lib/libartd.so
+#lib/libartd-compiler.so
+#lib/libartd-dexlayout.so
 
 etc/init/thermalindicator.rc
 etc/init/program_binary_service.rc
