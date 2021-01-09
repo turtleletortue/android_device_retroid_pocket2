@@ -163,3 +163,11 @@ TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 
 # Exfat
 TARGET_EXFAT_DRIVER := exfat
+
+# Malloc_svelte
+MALLOC_SVELTE := true
+
+# Mediatek audio
+BOARD_USES_MTK_AUDIO := true
+USE_XML_AUDIO_POLICY_CONF := 1
+

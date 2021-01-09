@@ -33,7 +33,7 @@ on post-fs-data
 
 on boot
 
-service pservice /system/bin/pservice
+service pservice /vendor/bin/pservice
     user root
     group root
     class main
