@@ -193,7 +193,7 @@ bin/program_binary_service
 bin/program_binary_builder
 bin/profmand
 bin/netdiag
-bin/mobile_log_d
+#bin/mobile_log_d
 bin/mmp
 bin/emdlogger1
 bin/emdlogger5
@@ -220,7 +220,7 @@ lib/libaudio-resampler.so
 etc/init/thermalindicator.rc
 etc/init/program_binary_service.rc
 etc/init/netdiag.rc
-etc/init/mobile_log_d.rc
+#etc/init/mobile_log_d.rc
 etc/init/mdlogger.rc
 etc/init/emdlogger1.rc
 etc/init/emdlogger5.rc
