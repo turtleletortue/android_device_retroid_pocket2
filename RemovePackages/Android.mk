@@ -7,4 +7,5 @@ LOCAL_MODULE_CLASS := APPS
 LOCAL_OVERRIDES_PACKAGES := AudioFX ExactCalculator Calendar Camera2 Email Messaging Phone Recorder Exchange2 Eleven
 LOCAL_UNINSTALLABLE_MODULE := true
 LOCAL_CERTIFICATE := PRESIGNED
+LOCAL_SRC_FILES := RemovePackages.txt
 include $(BUILD_PREBUILT)
