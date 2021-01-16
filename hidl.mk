@@ -27,6 +27,9 @@ PRODUCT_PACKAGES += \
 # Audio HAL
 PRODUCT_PACKAGES += \
     android.hardware.audio.effect@2.0-impl \
+    android.hardware.audio.effect@4.0-impl \
+    android.hardware.audio@2.0-impl \
+    android.hardwaer.audio@4.0-impl
 
 #    android.hardware.audio@2.0-impl \
 #    android.hardware.audio@2.0-service
