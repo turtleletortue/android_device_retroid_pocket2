@@ -1,0 +1,4 @@
+# Other Services
+NvRAMAgent                              u:object_r:nvram_agent_service:s0
+memory_dumper                           u:object_r:mediaserver_service:s0
+PServerBinder                           u:object_r:PServerBinder_service:s0

@@ -1,0 +1,2 @@
+allow untrusted_app PServerBinder_service:service_manager find;
+allow untrusted_app mnt_media_rw_file:dir getattr;

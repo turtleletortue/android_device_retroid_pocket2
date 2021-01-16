@@ -37,4 +37,4 @@ service pservice /vendor/bin/pservice
     user root
     group root
     class main
-    #seclabel u:r:pservice:s0
+    seclabel u:r:pservice:s0
