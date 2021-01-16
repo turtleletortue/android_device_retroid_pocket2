@@ -125,7 +125,7 @@ lib/libnvram_sec_mtk.so
 #lib/vendor.mediatek.hardware.radio@2.0.so
 lib/libyv12util.so
 lib/libxtables.so
-lib/libxml2.so
+#lib/libxml2.so
 lib/libvsync_hint.so
 lib/libvoicerecognition.so
 lib/libvoicerecognition_jni.so
