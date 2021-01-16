@@ -87,7 +87,8 @@ PRODUCT_PACKAGES += \
 
 # Shims
 PRODUCT_PACKAGES += \
-    libshim_program_binary_service
+    libshim_program_binary_service \
+    libshim_graphic_buffer
 #    libmtk_symbols \
 #    libshim_ui \
 #    libshim_wvm \
