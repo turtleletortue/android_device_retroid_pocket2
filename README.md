@@ -1,6 +1,10 @@
-Experimental device tree for Retroid Pocket 2 LineageOS 15.1
+Experimental device tree for Retroid Pocket 2 LineageOS 16.0
+
+What works:
+
+It boots
 
 Issues:
 
-Weird graphical issues (gralloc incorrect bits error) and audio not functioning
+Too many to count
 
