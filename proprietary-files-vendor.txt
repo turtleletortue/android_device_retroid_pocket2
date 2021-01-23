@@ -641,8 +641,6 @@ vendor/lib/libhwuiext.so
 # libwifi-hal.so
 vendor/lib/libwifi-hal.so
 
-vendor/lib/libhwc2on1adapter.so
-
 vendor/lib/hw/audio_policy.stub.so
 
 # Submix audio policy config
@@ -660,4 +658,12 @@ vendor/etc/audio_policy_configuration.xml
 vendor/etc/audio_policy_volumes.xml
 vendor/etc/r_submix_audio_policy_configuration.xml
 vendor/etc/usb_audio_policy_configuration.xml
+
+# Media codecs
+vendor/etc/media_codecs.xml
+vendor/etc/media_codecs_google_audio.xml
+vendor/etc/media_codecs_google_video_le.xml
+vendor/etc/media_codecs_mediatek_audio.xml
+vendor/etc/media_codecs_mediatek_video.xml
+vendor/etc/media_codecs_performance.xml
 
