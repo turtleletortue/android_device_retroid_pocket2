@@ -4,7 +4,7 @@ PRODUCT_PACKAGES += \
     android.hidl.manager@1.0
 
 # Power (non-lineage imp)
-PRODUCT_PACKAGES += android.hardware.power@1.0-impl
+#PRODUCT_PACKAGES += android.hardware.power@1.0-impl
 
 # Graphics
 PRODUCT_PACKAGES += \
@@ -19,10 +19,10 @@ PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-impl \
     android.hardware.gatekeeper@1.0-service
 
-# Bluetooth
-PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.0-impl \
-    android.hardware.bluetooth@1.0-service
+# Bluetooth - Use mtk version instead
+#PRODUCT_PACKAGES += \
+#    android.hardware.bluetooth@1.0-impl \
+#    android.hardware.bluetooth@1.0-service
 
 # Audio HAL
 PRODUCT_PACKAGES += \
@@ -40,18 +40,18 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl 
 
-# Lights
-PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-impl 
+# Lights - use mtk impl
+#PRODUCT_PACKAGES += \
+#    android.hardware.light@2.0-impl 
 
-# Sensors
-PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0-impl
+# Sensors - use mtk impl
+#PRODUCT_PACKAGES += \
+#    android.hardware.sensors@1.0-impl
 
 # Thermal
 PRODUCT_PACKAGES += \
-    android.hardware.thermal@1.0-impl \
-    android.hardware.thermal@1.0-service
+    android.hardware.thermal@1.0-impl 
+#android.hardware.thermal@1.0-service
 
 # Camera
 #PRODUCT_PACKAGES += \
