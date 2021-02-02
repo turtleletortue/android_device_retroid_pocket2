@@ -2,5 +2,7 @@
 <resources>
     <!-- Set the automatic brightness mode off by default -->
     <bool name="def_screen_brightness_automatic_mode">false</bool>
+    <!-- Do not enable auto rotation. -->
+    <bool name="def_accelerometer_rotation">false</bool>
 </resources>
 
