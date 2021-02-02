@@ -1,0 +1,8 @@
+#
+
+# For Google Trusty Secure Storage Proxy
+/data/trusty(/.*)? u:object_r:tee_data_file:s0
+
+/vendor/bin/storageproxyd u:object_r:tee_exec:s0
+/vendor/bin/pservice u:object_r:pservice_exec:s0
+/system/bin/startup.sh u:object_r:startup_exec:s0

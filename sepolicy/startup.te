@@ -1,0 +1,6 @@
+type startup, domain;
+typeattribute startup coredomain;
+type startup_exec, exec_type, vendor_file_type, file_type;
+
+permissive startup;
+init_daemon_domain(startup)
