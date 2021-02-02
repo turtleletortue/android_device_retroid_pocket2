@@ -137,6 +137,16 @@ PRODUCT_PACKAGES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp,adb \
     ro.config.low_ram=true \
+    ro.mount.fs=EXT4 \
+    persist.service.acm.enable=0 \
+    ro.hwui.disable_asset_atlas=true \
+    ro.mtk_perf_fast_start_win=0 \
+    persist.service.acm.enable=0 \
+    debug.atrace.tags.enableflags=0 \
+    ro.hwui.path_cache_size=0 \
+    ro.hwui.text_small_cache_width=512 \
+    ro.hwui.text_small_cache_height=256 \
+    camera.disable_zsl_mode=1
 
 # Permissions
 PRODUCT_COPY_FILES += \

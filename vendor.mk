@@ -23,4 +23,26 @@ PRODUCT_PROPERTY_OVERRIDES += \
     RO_VENDOR_VNDK_VERSION \
     RO_PRODUCT_FIRST_API_LEVEL \
     ro.bionic.ld.warning=1 \
-    net.bt.name=Android
+    net.bt.name=Android \
+    Build.BRAND=MTK \
+    service.wcn.driver.ready=no \
+    ro.mtk_config_max_dram_size=0x40000000 \
+    ro.mtk_pq_support=2 \
+    ro.mtk_pq_color_mode=1 \
+    mtk.vdec.waitkeyframeforplay=1 \
+    ro.mtk_audio_alac_support=1 \
+    ro.mtk_audio_ape_support=1 \
+    ro.mtk_audio_tuning_tool_ver=V1 \
+    ro.mtk_besloudness_support=1 \
+    persist.sys.strictmode.visual=0 \
+    persist.sys.strictmode.disable=1 \
+    drm.service.enabled=true \
+    fmradio.driver.enable=0 \
+    ro.num_md_protocol=2 \
+    ro.mtk_fd_support=1 \
+    ro.mtk_widevine_drm_l3_support=1 \
+    ro.mtk_f2fs_enable=0 \
+    
+    
+
+
