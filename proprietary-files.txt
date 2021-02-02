@@ -189,8 +189,8 @@ bin/thermalindicator
 bin/startup.sh
 bin/rtt
 bin/pservice:vendor/bin/pservice
-bin/program_binary_service
-bin/program_binary_builder
+#bin/program_binary_service
+#bin/program_binary_builder
 bin/profmand
 bin/netdiag
 #bin/mobile_log_d
@@ -200,7 +200,7 @@ bin/emdlogger5
 
 lib/libvixld-arm.so
 lib/libvixld-arm64.so
-lib/libprogrambinary.so
+#lib/libprogrambinary.so
 lib/libplatformadapter.so
 lib/libopenjdkjvmtid.so
 lib/libopenjdkjvmd.so
@@ -218,7 +218,7 @@ lib/libaudio-resampler.so
 #lib/libartd-dexlayout.so
 
 etc/init/thermalindicator.rc
-etc/init/program_binary_service.rc
+#etc/init/program_binary_service.rc
 etc/init/netdiag.rc
 #etc/init/mobile_log_d.rc
 etc/init/mdlogger.rc
