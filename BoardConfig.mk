@@ -98,8 +98,8 @@ TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 #TARGET_LDPRELOAD += libmtk_symbols.so
 
 # SHims
-TARGET_LD_SHIM_LIBS := \
-    /system/bin/program_binary_service|libshim_program_binary_service.so
+#TARGET_LD_SHIM_LIBS := \
+#    /system/bin/program_binary_service|libshim_program_binary_service.so
 
 #LINKER_FORCED_SHIM_LIBS := \
 #    /system/lib/libdpframework.so|liblog_mtk.so \
