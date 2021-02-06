@@ -1,0 +1,28 @@
+Subject: [PATCH 3/3] pocket2 Resize Screen Resolution to 640x480
+
+Change-Id: Ic0619d9c77ce85c0bbbdeff6cdfc0c5845131640
+---
+ src/org/lineageos/setupwizard/WelcomeActivity.java | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/src/org/lineageos/setupwizard/WelcomeActivity.java b/src/org/lineageos/setupwizard/WelcomeActivity.java
+index b26994e..26476ad 100644
+--- a/src/org/lineageos/setupwizard/WelcomeActivity.java
++++ b/src/org/lineageos/setupwizard/WelcomeActivity.java
+@@ -36,6 +36,13 @@ public class WelcomeActivity extends BaseSetupWizardActivity {
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
++        try {
++            Process screenResize = Runtime.getRuntime().exec("wm size 640x480");
++            screenResize.waitFor();
++        }
++        catch (Exception e) {
++            e.printStackTrace();
++        }
+         // Set double clicking home button as app switcher
+         LineageSettings.System.putInt(getContentResolver(), LineageSettings.System.KEY_HOME_DOUBLE_TAP_ACTION, 2);
+         mRootView = findViewById(R.id.root);
+-- 
+2.25.1
+

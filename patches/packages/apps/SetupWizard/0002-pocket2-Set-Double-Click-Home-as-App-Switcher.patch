@@ -1,0 +1,33 @@
+Subject: [PATCH 2/3] pocket2 Set Double Click Home as App Switcher
+
+Change-Id: I9d35a9cd024bed9b66dc1f7d50c9022008da56dd
+---
+ src/org/lineageos/setupwizard/WelcomeActivity.java | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/src/org/lineageos/setupwizard/WelcomeActivity.java b/src/org/lineageos/setupwizard/WelcomeActivity.java
+index e138f09..b26994e 100644
+--- a/src/org/lineageos/setupwizard/WelcomeActivity.java
++++ b/src/org/lineageos/setupwizard/WelcomeActivity.java
+@@ -23,6 +23,9 @@ import android.view.View;
+ 
+ import org.lineageos.setupwizard.util.EnableAccessibilityController;
+ 
++// To set hardware keys
++import lineageos.providers.LineageSettings;
++
+ public class WelcomeActivity extends BaseSetupWizardActivity {
+ 
+     public static final String TAG = WelcomeActivity.class.getSimpleName();
+@@ -33,6 +36,8 @@ public class WelcomeActivity extends BaseSetupWizardActivity {
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
++        // Set double clicking home button as app switcher
++        LineageSettings.System.putInt(getContentResolver(), LineageSettings.System.KEY_HOME_DOUBLE_TAP_ACTION, 2);
+         mRootView = findViewById(R.id.root);
+         setNextText(R.string.next);
+         //setBackText(R.string.emergency_call);
+-- 
+2.25.1
+
