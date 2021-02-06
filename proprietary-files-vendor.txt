@@ -70,7 +70,7 @@ vendor/etc/agps_profiles_conf2.xml
 #vendor/etc/ecc_list_OP17.xml
 #vendor/etc/ecc_list_OP18.xml
 #vendor/etc/ecc_list.xml
-#vendor/etc/init/android.hardware.audio@2.0-service-mediatek.rc
+vendor/etc/init/android.hardware.audio@2.0-service-mediatek.rc
 vendor/etc/init/android.hardware.bluetooth@1.0-service-mediatek.rc
 #vendor/etc/init/android.hardware.broadcastradio@1.1-service.rc
 #vendor/etc/init/android.hardware.drm@1.0-service.rc
@@ -351,9 +351,9 @@ vendor/lib/hw/android.hardware.bluetooth@1.0-impl-mediatek.so
 #vendor/lib/hw/android.hardware.memtrack@1.0-impl.so
 #vendor/lib/hw/android.hardware.renderscript@1.0-impl.so
 #vendor/lib/hw/android.hardware.sensors@1.0-impl-mediatek.so
-#vendor/lib/hw/audio_policy.stub.so
+vendor/lib/hw/audio_policy.stub.so
 vendor/lib/hw/audio.primary.mt6580.so
-#vendor/lib/hw/audio.r_submix.default.so
+vendor/lib/hw/audio.r_submix.default.so
 #vendor/lib/hw/audio.usb.default.so
 #vendor/lib/hw/gatekeeper.mt6580.so
 vendor/lib/hw/gralloc.mt6580.so
