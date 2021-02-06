@@ -17,7 +17,7 @@ $(call inherit-product-if-exists, vendor/retroid/pocket2/pocket2-vendor.mk)
 include $(LOCAL_PATH)/hidl.mk
 
 # Vendor Properties
-include $(LOCAL_PATH)/vendor.mk
+#include $(LOCAL_PATH)/vendor.mk
 
 # Wifi
 PRODUCT_PACKAGES += \
