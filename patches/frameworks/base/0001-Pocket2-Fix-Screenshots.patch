@@ -1,13 +1,19 @@
-Subject: [PATCH] Pocket2 Use LCM Resolution as screenshot resolution *
- Screenshots are squished otherwise, so use full LCM resolution
+Subject: [PATCH] Pocket2 Fix Screenshots * On Pocket2, the LCM resolution
+ being 640x800, while the actual screen being 640x480 has weird effects on
+ screenshots. It causes screenshots to appear as 640x800 images squished down
+ to 640x480, resulting in blurry, inaccurate screenshots. This patch makes it
+ so it takes the screenshot at LCM resolution (640x800) and then crops it to
+ 640x480 at the y value of 160 (where the 640x480 screen actually starts).
+ This will make it so screenshots will come out exactly like how the thing
+ screenshotted appears on screen.
 
-Change-Id: I28106bbc26a54f0b962c9abb18fb7e4292d5533c
+Change-Id: Ia91e20c2a987ed024800781ace6fef1080319e77
 ---
- .../systemui/screenshot/GlobalScreenshot.java | 19 ++++++++++---------
- 1 file changed, 10 insertions(+), 9 deletions(-)
+ .../systemui/screenshot/GlobalScreenshot.java | 26 ++++++++++++-------
+ 1 file changed, 16 insertions(+), 10 deletions(-)
 
 diff --git a/packages/SystemUI/src/com/android/systemui/screenshot/GlobalScreenshot.java b/packages/SystemUI/src/com/android/systemui/screenshot/GlobalScreenshot.java
-index 5aa9561258b..40a31522bf9 100644
+index 5aa9561258b..226190adb5e 100644
 --- a/packages/SystemUI/src/com/android/systemui/screenshot/GlobalScreenshot.java
 +++ b/packages/SystemUI/src/com/android/systemui/screenshot/GlobalScreenshot.java
 @@ -551,7 +551,7 @@ class GlobalScreenshot {
@@ -49,21 +55,32 @@ index 5aa9561258b..40a31522bf9 100644
                      mScreenBitmap.hasAlpha(), mScreenBitmap.getColorSpace());
              Canvas c = new Canvas(ss);
              c.translate(ss.getWidth() / 2, ss.getHeight() / 2);
-@@ -649,7 +650,7 @@ class GlobalScreenshot {
+@@ -648,27 +649,32 @@ class GlobalScreenshot {
+             mScreenBitmap.recycle();
              mScreenBitmap = ss;
          }
++        // Crop from 640x800 to 640x480
++        Bitmap cropped = Bitmap.createBitmap(mScreenBitmap, 0, 160, 640, 480);
++        mScreenBitmap.recycle();
++        mScreenBitmap = cropped;
  
 -        if (width != mDisplayMetrics.widthPixels || height != mDisplayMetrics.heightPixels) {
-+        if (width != 640 || height != 800) {
++        // We already have to crop it unfortunately
++        /*if (width != 640 || height != 800) {
              // Crop the screenshot to selected region
              Bitmap cropped = Bitmap.createBitmap(mScreenBitmap, x, y, width, height);
              mScreenBitmap.recycle();
-@@ -661,14 +662,14 @@ class GlobalScreenshot {
+             mScreenBitmap = cropped;
+-        }
++        }*/
+ 
+         // Optimizations
+         mScreenBitmap.setHasAlpha(false);
          mScreenBitmap.prepareToDraw();
  
          // Start the post-screenshot animation
 -        startAnimation(finisher, mDisplayMetrics.widthPixels, mDisplayMetrics.heightPixels,
-+        startAnimation(finisher, 640, 800,
++        startAnimation(finisher, 640, 480,
                  statusBarVisible, navBarVisible);
      }
  
