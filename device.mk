@@ -108,7 +108,7 @@ PRODUCT_PACKAGES += \
 
 # Android stock launcher
 PRODUCT_PACKAGES += \
-    Launcher3
+    Launcher3Go
 
 # RePoLa (community, open source launcher)
 PRODUCT_PACKAGES += \
