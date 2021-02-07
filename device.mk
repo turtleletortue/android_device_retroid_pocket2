@@ -106,10 +106,6 @@ PRODUCT_PACKAGES += \
     Toolbox \
     RsMappingLite
 
-# Leanback Launcher
-PRODUCT_PACKAGES += \
-    Leanback
-
 # Android stock launcher
 PRODUCT_PACKAGES += \
     Launcher3
