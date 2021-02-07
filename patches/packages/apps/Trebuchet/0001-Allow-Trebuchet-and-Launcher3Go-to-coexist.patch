@@ -1,0 +1,23 @@
+Subject: [PATCH] Allow Trebuchet and Launcher3Go to coexist
+
+Change-Id: Idad2d6154fd4fa6669b7c26837e170887f835fc6
+---
+ Android.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Android.mk b/Android.mk
+index 3a6bdd721..ae9cfa9eb 100644
+--- a/Android.mk
++++ b/Android.mk
+@@ -124,7 +124,7 @@ LOCAL_SDK_VERSION := current
+ LOCAL_MIN_SDK_VERSION := 21
+ LOCAL_PACKAGE_NAME := TrebuchetGo
+ LOCAL_PRIVILEGED_MODULE := true
+-LOCAL_OVERRIDES_PACKAGES := Home Launcher2 Launcher3 Launcher3Go Trebuchet
++LOCAL_OVERRIDES_PACKAGES := Home Launcher2 Launcher3 Trebuchet
+ 
+ LOCAL_AAPT_FLAGS += --rename-manifest-package org.lineageos.trebuchet
+ 
+-- 
+2.25.1
+
