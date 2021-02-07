@@ -1,0 +1,81 @@
+Subject: [PATCH] Pocket2 Use LCM Resolution as screenshot resolution *
+ Screenshots are squished otherwise, so use full LCM resolution
+
+Change-Id: I28106bbc26a54f0b962c9abb18fb7e4292d5533c
+---
+ .../systemui/screenshot/GlobalScreenshot.java | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/screenshot/GlobalScreenshot.java b/packages/SystemUI/src/com/android/systemui/screenshot/GlobalScreenshot.java
+index 5aa9561258b..40a31522bf9 100644
+--- a/packages/SystemUI/src/com/android/systemui/screenshot/GlobalScreenshot.java
++++ b/packages/SystemUI/src/com/android/systemui/screenshot/GlobalScreenshot.java
+@@ -551,7 +551,7 @@ class GlobalScreenshot {
+ 
+         // Scale has to account for both sides of the bg
+         mBgPadding = (float) r.getDimensionPixelSize(R.dimen.global_screenshot_bg_padding);
+-        mBgPaddingScale = mBgPadding / mDisplayMetrics.widthPixels;
++        mBgPaddingScale = mBgPadding / 640;
+ 
+         // determine the optimal preview size
+         int panelWidth = 0;
+@@ -561,7 +561,7 @@ class GlobalScreenshot {
+         }
+         if (panelWidth <= 0) {
+             // includes notification_panel_width==match_parent (-1)
+-            panelWidth = mDisplayMetrics.widthPixels;
++            panelWidth = 640;
+         }
+         mPreviewWidth = panelWidth;
+         mPreviewHeight = r.getDimensionPixelSize(R.dimen.notification_max_height);
+@@ -612,7 +612,8 @@ class GlobalScreenshot {
+         // We need to orient the screenshot correctly (and the Surface api seems to take screenshots
+         // only in the natural orientation of the device :!)
+         mDisplay.getRealMetrics(mDisplayMetrics);
+-        float[] dims = {mDisplayMetrics.widthPixels, mDisplayMetrics.heightPixels};
++        // statically set to lcm resolution
++        float[] dims = {640, 800};
+         float degrees = getDegreesForRotation(mDisplay.getRotation());
+         boolean requiresRotation = (degrees > 0);
+         if (requiresRotation) {
+@@ -635,8 +636,8 @@ class GlobalScreenshot {
+ 
+         if (requiresRotation) {
+             // Rotate the screenshot to the current orientation
+-            Bitmap ss = Bitmap.createBitmap(mDisplayMetrics.widthPixels,
+-                    mDisplayMetrics.heightPixels, Bitmap.Config.ARGB_8888,
++            Bitmap ss = Bitmap.createBitmap(640,
++                    800, Bitmap.Config.ARGB_8888,
+                     mScreenBitmap.hasAlpha(), mScreenBitmap.getColorSpace());
+             Canvas c = new Canvas(ss);
+             c.translate(ss.getWidth() / 2, ss.getHeight() / 2);
+@@ -649,7 +650,7 @@ class GlobalScreenshot {
+             mScreenBitmap = ss;
+         }
+ 
+-        if (width != mDisplayMetrics.widthPixels || height != mDisplayMetrics.heightPixels) {
++        if (width != 640 || height != 800) {
+             // Crop the screenshot to selected region
+             Bitmap cropped = Bitmap.createBitmap(mScreenBitmap, x, y, width, height);
+             mScreenBitmap.recycle();
+@@ -661,14 +662,14 @@ class GlobalScreenshot {
+         mScreenBitmap.prepareToDraw();
+ 
+         // Start the post-screenshot animation
+-        startAnimation(finisher, mDisplayMetrics.widthPixels, mDisplayMetrics.heightPixels,
++        startAnimation(finisher, 640, 800,
+                 statusBarVisible, navBarVisible);
+     }
+ 
+     void takeScreenshot(Runnable finisher, boolean statusBarVisible, boolean navBarVisible) {
+         mDisplay.getRealMetrics(mDisplayMetrics);
+-        takeScreenshot(finisher, statusBarVisible, navBarVisible, 0, 0, mDisplayMetrics.widthPixels,
+-                mDisplayMetrics.heightPixels);
++        takeScreenshot(finisher, statusBarVisible, navBarVisible, 0, 0, 640,
++                800);
+     }
+ 
+     /**
+-- 
+2.25.1
+
