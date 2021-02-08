@@ -13,6 +13,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # Vendor
 $(call inherit-product-if-exists, vendor/retroid/pocket2/pocket2-vendor.mk)
 
+# Turtle extras
+$(call inherit-product-if-exists, vendor/turtle/extras/turtle-vendor.mk)
+
 # Hidl
 include $(LOCAL_PATH)/hidl.mk
 
