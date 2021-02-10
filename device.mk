@@ -187,12 +187,6 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 # MTKRC
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.mtkrc.path=/vendor/etc/init/hw/
 
-# Lineage Recovery
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/recovery/fstab.mt6580:root/fstab.mt6580 \
-    $(LOCAL_PATH)/recovery/ueventd.mt6580.rc:root/ueventd.mt6580.rc \
-    $(LOCAL_PATH)/recovery/init.recovery.mt6580.rc:root/init.recovery.mt6580.rc \
-
 # Dalvik/HWUI
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
