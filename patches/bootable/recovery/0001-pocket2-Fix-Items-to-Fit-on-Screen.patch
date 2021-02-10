@@ -1,0 +1,56 @@
+Subject: [PATCH] pocket2 Fix Items to Fit on Screen * Due to the LCM being
+ larger than the actual screen, it is necessary to do the following to get the
+ screen in proper position. First, the graphics frame buffer must be set to
+ 640 width, 480 height to match the actual screen. Next, we need to set the
+ overscan y value to 160, so that the graphics buffer is written to (0,160),
+ which corresponds to where the actual screen starts at. This fits the whole
+ image properly on screen.
+
+Change-Id: I048a59ad724f1f6c88bef75e48a9de90376603b6
+---
+ minui/graphics.cpp | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/minui/graphics.cpp b/minui/graphics.cpp
+index e9c2699d..92ef1232 100644
+--- a/minui/graphics.cpp
++++ b/minui/graphics.cpp
+@@ -34,7 +34,7 @@ static MinuiBackend* gr_backend = nullptr;
+ 
+ static int overscan_percent = OVERSCAN_PERCENT;
+ static int overscan_offset_x = 0;
+-static int overscan_offset_y = 0;
++static int overscan_offset_y = 160;
+ 
+ static unsigned char gr_current_r = 255;
+ static unsigned char gr_current_g = 255;
+@@ -350,7 +350,9 @@ int gr_init() {
+   gr_backend = backend.release();
+ 
+   overscan_offset_x = gr_draw->width * overscan_percent / 100;
+-  overscan_offset_y = gr_draw->height * overscan_percent / 100;
++  //overscan_offset_y = gr_draw->height * overscan_percent / 100;
++  // statically set offset to our needed one
++  overscan_offset_y = 160;
+ 
+   gr_flip();
+   gr_flip();
+@@ -363,11 +365,13 @@ void gr_exit() {
+ }
+ 
+ int gr_fb_width() {
+-  return gr_draw->width - 2 * overscan_offset_x;
++  //return gr_draw->width - 2 * overscan_offset_x;
++  return 640;
+ }
+ 
+ int gr_fb_height() {
+-  return gr_draw->height - 2 * overscan_offset_y;
++  //return gr_draw->height - 2 * overscan_offset_y;
++  return 480;
+ }
+ 
+ void gr_fb_blank(bool blank) {
+-- 
+2.25.1
+
