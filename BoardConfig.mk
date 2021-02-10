@@ -174,3 +174,6 @@ USE_XML_AUDIO_POLICY_CONF := 1
 # Ignore Neverallow errors for sepolicy
 SELINUX_IGNORE_NEVERALLOWS := true
 
+# AAPT CONFIG
+PRODUCT_AAPT_PREF_CONFIG := mdpi
+
