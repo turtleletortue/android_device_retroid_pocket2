@@ -1,0 +1,23 @@
+Subject: [PATCH] Use all apps button in Trebuchet
+
+Change-Id: I9eba7d3cbf7b910ce14ec47e2f50a1a91f630d00
+---
+ src/com/android/launcher3/config/BaseFlags.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/com/android/launcher3/config/BaseFlags.java b/src/com/android/launcher3/config/BaseFlags.java
+index 36a2f3ac3..fb1cece0e 100644
+--- a/src/com/android/launcher3/config/BaseFlags.java
++++ b/src/com/android/launcher3/config/BaseFlags.java
+@@ -51,7 +51,7 @@ abstract class BaseFlags {
+     // Feature flag to enable moving the QSB on the 0th screen of the workspace.
+     public static final boolean QSB_ON_FIRST_SCREEN = false;
+     // When enabled the all-apps icon is not added to the hotseat.
+-    public static final boolean NO_ALL_APPS_ICON = true;
++    public static final boolean NO_ALL_APPS_ICON = false;
+     // When enabled fling down gesture on the first workspace triggers search.
+     public static final boolean PULLDOWN_SEARCH = false;
+     // When enabled the status bar may show dark icons based on the top of the wallpaper.
+-- 
+2.25.1
+
