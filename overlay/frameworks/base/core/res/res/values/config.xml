@@ -116,6 +116,6 @@
             2 - Power off (with confirmation)
             3 - Power off (without confirmation)
     -->
-    <integer name="config_longPressOnPowerBehavior">2</integer>
+    <integer name="config_longPressOnPowerBehavior">1</integer>
 
 </resources>
