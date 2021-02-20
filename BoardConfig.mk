@@ -171,9 +171,6 @@ MALLOC_SVELTE := true
 BOARD_USES_MTK_AUDIO := true
 USE_XML_AUDIO_POLICY_CONF := 1
 
-# Ignore Neverallow errors for sepolicy
-SELINUX_IGNORE_NEVERALLOWS := true
-
 # AAPT CONFIG
 PRODUCT_AAPT_PREF_CONFIG := mdpi
 

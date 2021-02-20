@@ -1,10 +1,9 @@
 type pservice, domain;
-typeattribute pservice coredomain;
 type pservice_exec, exec_type, vendor_file_type, file_type;
 
 permissive pservice;
 init_daemon_domain(pservice)
-allow pservice PServerBinder_service:service_manager {add find};
+#allow pservice PServerBinder_service:service_manager {add find};
 allow servicemanager pservice:dir search;
 allow servicemanager pservice:file { read open };
 allow servicemanager pservice:process getattr;
