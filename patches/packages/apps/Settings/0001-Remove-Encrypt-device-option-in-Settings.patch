@@ -1,0 +1,73 @@
+Subject: [PATCH] Remove Encrypt device option in Settings
+
+Change-Id: I91a5f15d8307143ccaa6534561570cb804260679
+---
+ AndroidManifest.xml                                   | 4 ++--
+ src/com/android/settings/EncryptionAndCredential.java | 8 ++++----
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/AndroidManifest.xml b/AndroidManifest.xml
+index 5615594fea..21b6eb94df 100644
+--- a/AndroidManifest.xml
++++ b/AndroidManifest.xml
+@@ -2391,7 +2391,7 @@
+         />
+ 
+         <!-- Pseudo-activity used to provide an intent-filter entry point to encryption settings -->
+-        <activity android:name="Settings$CryptKeeperSettingsActivity"
++        <!--<activity android:name="Settings$CryptKeeperSettingsActivity"
+                 android:label="@string/crypt_keeper_encrypt_title">
+             <intent-filter android:priority="1">
+                 <action android:name="android.app.action.START_ENCRYPTION" />
+@@ -2403,7 +2403,7 @@
+             </intent-filter>
+             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                 android:value="com.android.settings.CryptKeeperSettings" />
+-        </activity>
++        </activity>-->
+ 
+         <activity android:name="Settings$DataPlanUsageSummaryActivity"
+                 android:label="@string/data_usage_summary_title"
+diff --git a/src/com/android/settings/EncryptionAndCredential.java b/src/com/android/settings/EncryptionAndCredential.java
+index 4892f7ef38..cfe9c92a01 100644
+--- a/src/com/android/settings/EncryptionAndCredential.java
++++ b/src/com/android/settings/EncryptionAndCredential.java
+@@ -94,7 +94,7 @@ public class EncryptionAndCredential extends SettingsPreferenceFragment implemen
+         // Add options for device encryption
+         mIsAdmin = mUm.isAdminUser();
+ 
+-        if (mIsAdmin) {
++        /*if (mIsAdmin) {
+             if (LockPatternUtils.isDeviceEncryptionEnabled()) {
+                 // The device is currently encrypted.
+                 addPreferencesFromResource(R.xml.security_settings_encrypted);
+@@ -102,7 +102,7 @@ public class EncryptionAndCredential extends SettingsPreferenceFragment implemen
+                 // This device supports encryption but isn't encrypted.
+                 addPreferencesFromResource(R.xml.security_settings_unencrypted);
+             }
+-        }
++        }*/
+ 
+         // Credential storage
+         mKeyStore = KeyStore.getInstance(); // needs to be initialized for onResume()
+@@ -219,7 +219,7 @@ public class EncryptionAndCredential extends SettingsPreferenceFragment implemen
+ 
+             final DevicePolicyManager dpm = (DevicePolicyManager)
+                     context.getSystemService(Context.DEVICE_POLICY_SERVICE);
+-            switch (dpm.getStorageEncryptionStatus()) {
++            /*switch (dpm.getStorageEncryptionStatus()) {
+                 case DevicePolicyManager.ENCRYPTION_STATUS_ACTIVE:
+                     // The device is currently encrypted. Disable security_settings_unencrypted
+                     keys.addAll(getNonIndexableKeysFromXml(
+@@ -230,7 +230,7 @@ public class EncryptionAndCredential extends SettingsPreferenceFragment implemen
+                     keys.addAll(getNonIndexableKeysFromXml(
+                             context, R.xml.security_settings_encrypted));
+                     break;
+-            }
++            }*/
+ 
+             return keys;
+         }
+-- 
+2.25.1
+
