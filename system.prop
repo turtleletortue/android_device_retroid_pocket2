@@ -62,3 +62,7 @@ persist.sys.strictmode.visual=0
 persist.sys.strictmode.disable=1
 
 config.disable_cameraservice=true
+
+# Set UI elements to be larger (due to Pocket2's small screen)
+ro.sf.lcd_density=186
+
