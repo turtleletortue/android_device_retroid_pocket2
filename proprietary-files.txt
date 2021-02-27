@@ -1,67 +1,31 @@
 
-#lib64/libem_audio_jni.so
 lib/libem_audio_jni.so
-#lib64/libem_bt_jni.so
 lib/libem_bt_jni.so
-#lib64/libem_lte_jni.so
 lib/libem_lte_jni.so
-#lib64/libem_sensor_jni.so
 lib/libem_sensor_jni.so
-#lib64/libem_support_jni.so
 lib/libem_support_jni.so
-#lib64/libem_usb_jni.so
 lib/libem_usb_jni.so
-#lib64/libem_wifi_jni.so
 lib/libem_wifi_jni.so
 
 bin/dm_agent_binder
 etc/init/dm_agent_binder.rc
 lib/libcustom_prop.so
-#lib64/libcustom_prop.so
 
 bin/thermald
 etc/init/init.thermald.rc
-
-#bin/em_svr
-#etc/init/em_svr.rc
 lib/libhwm_mtk.so
-#lib64/libhwm_mtk.so
 lib/libsysenv_system.so
-#lib64/libsysenv_system.so
-#lib64/libccci_util_sys.so
 lib/libfile_op_mtk.so
-#lib64/libfile_op_mtk.so
 lib/libcustom_nvram_mtk.so
-#lib64/libcustom_nvram_mtk.so
 
 
 bin/audiocmdservice_atci
 etc/init/audiocmdservice_atci.rc
 
-#bin/sn
-#etc/init/sn.rc
-
 bin/storagemanagerd
 etc/init/storagemanagerd.rc
 
-#etc/apdb/APDB_MT6580_S01_alps-trunk-o1.bsp_W19.09
-#etc/apdb/APDB_MT6580_S01_alps-trunk-o1.bsp_W19.09_ENUM
-
-#etc/permissions/mediatek-packages-teleservice.xml
-etc/permissions/privapp-permissions-mediatek.xml
-
-#lib64/vendor.mediatek.hardware.pq@2.0.so
 lib/vendor.mediatek.hardware.pq@2.0.so
-
-# Camera
-#lib64/vendor.mediatek.hardware.camera.device@1.1.so
-#lib/vendor.mediatek.hardware.camera.device@1.1.so
-
-# MiraVision (display tuning)
-#-app/MiraVision/MiraVision.apk
-
-# NVRAM
-#lib64/vendor.mediatek.hardware.nvram@1.0.so
 lib/vendor.mediatek.hardware.nvram@1.0.so
 
 # Power
@@ -79,58 +43,30 @@ etc/bluetooth/mtk_bt_stack.conf
 # GED
 bin/ged_srv
 etc/init/ged_srv.rc
-#lib64/libged_sys.so
-#lib64/libged_kpi.so
 lib/libged_sys.so
 lib/libged_kpi.so
 
 # Graphics
-#lib64/libgralloc_extra_sys.so
 lib/libgralloc_extra_sys.so
 
-#lib64/libui_ext_fwk.so
 lib/libui_ext_fwk.so
 
 lib/libmtkavenhancements.so
-#lib64/libmtkavenhancements.so
-#lib/libmtk_drvb_sys.so
-#lib64/libmtk_drvb_sys.so
 lib/libmtklimiter.so
-#lib64/libmtklimiter.so
 lib/libmtkshifter.so
-#lib64/libmtkshifter.so
 
 lib/libpq_cust_mtk.so
-#lib64/libpq_cust_mtk.so
 
 lib/libnvram_mtk.so
-#lib64/libnvram_mtk.so
 lib/libnvram_platform_mtk.so
-#lib64/libnvram_platform_mtk.so
 lib/libnvram_sec_mtk.so
-#lib64/libnvram_sec_mtk.so
 
-#lib/vendor.mediatek.hardware.dfps@1.0.so
-#lib/vendor.mediatek.hardware.keymaster_attestation@1.0.so
-#lib/vendor.mediatek.hardware.wifi.supplicant@1.1.so
-#lib64/vendor.mediatek.hardware.dfps@1.0.so
-#lib64/vendor.mediatek.hardware.keymaster_attestation@1.0.so
-##lib64/vendor.mediatek.hardware.wifi.supplicant@1.1.so
-
-# Power
-#lib64/vendor.mediatek.hardware.power@1.1.so
-#lib/vendor.mediatek.hardware.power@1.1.so
-
-#lib/vendor.mediatek.hardware.keymanage@1.0.so
-#lib/vendor.mediatek.hardware.radio@2.0.so
 lib/libyv12util.so
 lib/libxtables.so
-lib/libxml2.so
 lib/libvsync_hint.so
 lib/libvoicerecognition.so
 lib/libvoicerecognition_jni.so
 lib/libterservice.so
-#lib/libstlport_shared.so
 lib/libshowlogo.so
 lib/libsf_debug.so
 lib/libnetworklocation.so
@@ -140,10 +76,7 @@ lib/libmediatek_exceptionlog.so
 lib/liblocSDK6c.so
 lib/libjni_pq.so
 lib/libja3m.so
-#lib/libhdmiservice.so
-#lib/libhdmi.so
 lib/libgui_debug.so
-lib/libfmjni.so
 lib/libdrmmtkutil.so
 lib/libdrmmtkwhitelist.so
 lib/libcustom_jni.so
@@ -165,7 +98,6 @@ etc/wifi-apns.xml
 etc/usb_audio_policy_configuration.xml
 etc/r_submix_audio_policy_configuration.xml
 etc/init/terserver.rc
-#etc/init/bootlogoupdater.rc
 etc/init/batterywarning.rc
 etc/default_volume_tables.xml
 etc/audio_policy_volumes.xml
@@ -174,13 +106,10 @@ etc/audio_policy_configuration_stub.xml
 etc/apns-conf.xml
 etc/a2dp_audio_policy_configuration.xml
 
-
-bin/vintf
 bin/tertestclient
 bin/terservice
 bin/meta_tst
 bin/lcdc_screen_cap
-#bin/hdmi
 bin/boot_logo_updater
 bin/batterywarning
 bin/badblocks
@@ -189,18 +118,14 @@ bin/thermalindicator
 bin/startup.sh
 bin/rtt
 bin/pservice:vendor/bin/pservice
-#bin/program_binary_service
-#bin/program_binary_builder
 bin/profmand
 bin/netdiag
-#bin/mobile_log_d
 bin/mmp
-bin/emdlogger1
-bin/emdlogger5
+#bin/emdlogger1
+#bin/emdlogger5
 
 lib/libvixld-arm.so
 lib/libvixld-arm64.so
-#lib/libprogrambinary.so
 lib/libplatformadapter.so
 lib/libopenjdkjvmtid.so
 lib/libopenjdkjvmd.so
@@ -213,18 +138,13 @@ lib/libjni_eglfence_mtk.so
 lib/libccci_util_sys.so
 lib/libBinderServiceP.so:vendor/lib/libBinderServiceP.so
 lib/libaudio-resampler.so
-#lib/libartd.so
-#lib/libartd-compiler.so
-#lib/libartd-dexlayout.so
 
 etc/init/thermalindicator.rc
-#etc/init/program_binary_service.rc
 etc/init/netdiag.rc
-#etc/init/mobile_log_d.rc
-etc/init/mdlogger.rc
-etc/init/emdlogger1.rc
-etc/init/emdlogger5.rc
-bin/mdlogger
+#etc/init/mdlogger.rc
+#etc/init/emdlogger1.rc
+#etc/init/emdlogger5.rc
+#bin/mdlogger
 
 # boot script
 bin/boot.sh
