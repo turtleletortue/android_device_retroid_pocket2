@@ -633,7 +633,7 @@ vendor/etc/init/android.hardware.sensors@1.0-service-mediatek.rc
 
 vendor/bin/viaradiooptions
 vendor/bin/sysenv_daemon
-vendor/bin/rttv
+#vendor/bin/rttv
 vendor/bin/mtkradiooptions
 vendor/bin/mfv_ut
 vendor/lib/libhwuiext.so

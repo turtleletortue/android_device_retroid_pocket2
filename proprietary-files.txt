@@ -66,7 +66,7 @@ lib/libxtables.so
 lib/libvsync_hint.so
 lib/libvoicerecognition.so
 lib/libvoicerecognition_jni.so
-lib/libterservice.so
+#lib/libterservice.so
 lib/libshowlogo.so
 lib/libsf_debug.so
 lib/libnetworklocation.so
@@ -97,7 +97,7 @@ lib/libaal.so
 etc/wifi-apns.xml
 etc/usb_audio_policy_configuration.xml
 etc/r_submix_audio_policy_configuration.xml
-etc/init/terserver.rc
+#etc/init/terserver.rc
 etc/init/batterywarning.rc
 etc/default_volume_tables.xml
 etc/audio_policy_volumes.xml
@@ -107,7 +107,7 @@ etc/apns-conf.xml
 etc/a2dp_audio_policy_configuration.xml
 
 bin/tertestclient
-bin/terservice
+#bin/terservice
 bin/meta_tst
 bin/lcdc_screen_cap
 bin/boot_logo_updater
@@ -116,10 +116,10 @@ bin/badblocks
 
 bin/thermalindicator
 bin/startup.sh
-bin/rtt
+#bin/rtt
 bin/pservice:vendor/bin/pservice
 bin/profmand
-bin/netdiag
+#bin/netdiag
 bin/mmp
 #bin/emdlogger1
 #bin/emdlogger5
@@ -127,9 +127,9 @@ bin/mmp
 lib/libvixld-arm.so
 lib/libvixld-arm64.so
 lib/libplatformadapter.so
-lib/libopenjdkjvmtid.so
-lib/libopenjdkjvmd.so
-lib/libopenjdkd.so
+#lib/libopenjdkjvmtid.so
+#lib/libopenjdkjvmd.so
+#lib/libopenjdkd.so
 lib/libmrdump.so
 lib/libmemoryDumpEncoder.so
 lib/libjni_jpegstream_mtk.so
@@ -140,7 +140,7 @@ lib/libBinderServiceP.so:vendor/lib/libBinderServiceP.so
 lib/libaudio-resampler.so
 
 etc/init/thermalindicator.rc
-etc/init/netdiag.rc
+#etc/init/netdiag.rc
 #etc/init/mdlogger.rc
 #etc/init/emdlogger1.rc
 #etc/init/emdlogger5.rc
