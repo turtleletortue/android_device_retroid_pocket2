@@ -131,7 +131,10 @@ TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 #    /system/lib/hw/camera.mt6580.so|libshim_netutils.so \
 #    /system/lib/hw/camera.mt6580.so|libshim_bionic.so \
 #    /system/bin/kpoc_charger|liblog_mtk.so \
-    
+
+# LineageOS Hardware
+BOARD_USES_LINEAGE_HARDWARE := true
+BOARD_HARDWARE_CLASS := $(DEVICE_PATH)/lineagehw    
 
 # HIDL
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/manifest.xml
