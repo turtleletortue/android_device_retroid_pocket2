@@ -79,7 +79,6 @@ TARGET_RECOVERY_FSTAB := device/retroid/pocket2/rootdir/etc/recovery.fstab
 TARGET_PREBUILT_RECOVERY_KERNEL := device/retroid/pocket2/kernel
 
 # Sepolicy
-# N/A
 BOARD_SEPOLICY_DIRS := \
     device/retroid/pocket2/sepolicy
 
@@ -93,44 +92,6 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/retroid/pocket2/bluetooth
 TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
 TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := true
-
-# Shims
-#TARGET_LDPRELOAD += libmtk_symbols.so
-
-# SHims
-#TARGET_LD_SHIM_LIBS := \
-#    /system/bin/program_binary_service|libshim_program_binary_service.so
-
-#LINKER_FORCED_SHIM_LIBS := \
-#    /system/lib/libdpframework.so|liblog_mtk.so \
-#    /system/bin/guiext-server|liblog_mtk.so \
-#    /system/bin/pq|liblog_mtk.so \
-#    /system/lib/egl/libGLES_mali.so|liblog_mtk.so \
-#    /system/lib/libfmcust.so|liblog_mtk.so \
-#    /system/xbin/mnld|liblog_mtk.so \
-#    /system/bin/mtk_agpsd|liblog_mtk.so \
-#    /system/bin/mobile_log_d|liblog_mtk.so \
-#    /system/bin/emdlogger1|liblog_mtk.so \
-#    /system/bin/boot_logo_updater|liblog_mtk.so \
-#    /system/bin/MtkCodecService|liblog_mtk.so \
-#    /system/vendor/lib/libwvm.so|libshim_wvm.so \
-#	/system/lib/libui_ext.so|libshim_ui.so \
-#	/system/lib/libgui_ext.so|libshim_ui.so \
-#    /system/bin/xlog|libmtk_symbols.so \
-#    /system/bin/program_binary_service|libmtk_symbols.so \
-#    /system/lib/libccci_util.so|libmtk_symbols.so \
-#    /system/lib/libfs_mgr.so|libmtk_symbols.so \
-#    /system/bin/pq|libshim_bionic.so \
-#    /system/lib/egl/libGLES_mali.so|libshim_bionic.so \
-#    /system/bin/thermal|libshim_netutils.so \
-#    /system/bin/cameraserver|libshim_camera.so \
-#    /system/bin/mediaserver|libshim_camera.so \
-#    /system/bin/program_binary_service|libshim_ui.so \
-#    /system/lib/libcam_utils.so|libshim_ui.so \
-#    /system/lib/hw/camera.mt6580.so|libshim_ui.so \
-#    /system/lib/hw/camera.mt6580.so|libshim_netutils.so \
-#    /system/lib/hw/camera.mt6580.so|libshim_bionic.so \
-#    /system/bin/kpoc_charger|liblog_mtk.so \
 
 # LineageOS Hardware
 BOARD_USES_LINEAGE_HARDWARE := true

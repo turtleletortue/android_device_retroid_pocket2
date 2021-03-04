@@ -42,7 +42,6 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default \
-    audio.r_submix.default \
     libaudio-resampler \
     libaudioroute \
     libtinyalsa \
@@ -76,29 +75,6 @@ PRODUCT_PACKAGES += \
     init.mt6580.usb.rc \
     init.nvdata.rc 
 
-# .ko
-PRODUCT_PACKAGES += \
-    wmt_drv.ko \
-    wmt_chrdev_wifi.ko \
-    wlan_drv.ko \
-    bt_drv.ko
-
-
-# Shims
-#PRODUCT_PACKAGES += \
-#    liblog_mtk
-
-# Shims
-PRODUCT_PACKAGES += \
-    libshim_program_binary_service
-#    libmtk_symbols \
-#    libshim_ui \
-#    libshim_wvm \
-#    libshim_drm \
-#    libshim_bionic \
-#    libshim_netutils \
-#    libshim_camera
-
 # Graphics
 PRODUCT_PACKAGES += \
     libGLES_android \
@@ -129,10 +105,7 @@ PRODUCT_PACKAGES += \
     libdrm \
     libmockdrmcryptoplugin \
 
-# OTA Update Setup
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    cm.updater.uri=https://raw.githubusercontent.com/turtleletortue/lineage_ota/cm-14.1/lineageos_pocket2.json
-
+# Default default.prop properties
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp,adb \
     ro.config.low_ram=true \
