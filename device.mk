@@ -19,9 +19,6 @@ $(call inherit-product-if-exists, vendor/turtle/extras/turtle-vendor.mk)
 # Hidl
 include $(LOCAL_PATH)/hidl.mk
 
-# Vendor Properties
-#include $(LOCAL_PATH)/vendor.mk
-
 # Wifi
 PRODUCT_PACKAGES += \
     libwpa_client \
@@ -31,9 +28,6 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf \
     lib_driver_cmd_mt66xx \
     libwifi-hal-mt66xx
-
-# Lights
-PRODUCT_PACKAGES += lights.mt6580
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -155,7 +149,7 @@ PRODUCT_CHARACTERISTICS := tablet
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 # Overlay
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay/aosp
 
 # MTKRC
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.mtkrc.path=/vendor/etc/init/hw/

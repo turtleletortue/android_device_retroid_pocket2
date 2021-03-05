@@ -12,5 +12,8 @@ PRODUCT_MODEL := Retroid Pocket 2
 PRODUCT_NAME := lineage_pocket2
 PRODUCT_RELEASE_NAME := RetroidPocket2
 
+# Lineage Overlay
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay/lineage
+
 # Remove extra apps
 PRODUCT_PACKAGES += RemovePackages
