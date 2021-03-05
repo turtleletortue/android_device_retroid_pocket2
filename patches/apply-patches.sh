@@ -1,0 +1,40 @@
+# We change directory into the corresponding folders of the patched items, and then use patch -p1 on them
+
+cd ../../../../
+echo "Applying patches..."
+
+# Recovery patch
+cd bootable/recovery
+patch -p1 < ../../device/retroid/pocket2/patches/bootable/recovery/0001-pocket2-Fix-Items-to-Fit-on-Screen.patch
+cd ../../
+
+# Screenshots and Power Off UI patches
+cd frameworks/base
+patch -p1 < ../../device/retroid/pocket2/patches/frameworks/base/0001-Pocket2-Fix-Screenshots.patch
+patch -p1 < ../../device/retroid/pocket2/patches/frameworks/base/0002-Use-Pre-Oreo-Power-Off-UI-and-add-Reboot-to-Recovery.patch
+cd ../../
+
+# App patches
+cd packages/apps
+
+# Settings patch (remove encryption)
+cd Settings
+patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/Settings/0001-Remove-Encrypt-device-option-in-Settings.patch
+cd ../
+
+# SetupWizard patches (remove emergency call, set double clicking home as app switcher, resize resolution to 640x480)
+cd SetupWizard
+patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/SetupWizard/0001-Remove-Emergency-Call-Option.patch
+patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/SetupWizard/0002-pocket2-Set-Double-Click-Home-as-App-Switcher.patch
+patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/SetupWizard/0003-pocket2-Resize-Screen-Resolution-to-640x480.patch
+cd ../
+
+# Trebuchet patches (allow package Launcher3Go to be included and add back all apps button)
+cd Trebuchet
+patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/Trebuchet/0001-Allow-Trebuchet-and-Launcher3Go-to-coexist.patch
+patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/Trebuchet/0002-Use-all-apps-button-in-Trebuchet.patch
+cd ../
+
+# Exit
+cd ../../device/retroid/pocket2/patches
+echo "Done"
