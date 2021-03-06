@@ -1,0 +1,26 @@
+Subject: [PATCH] Ignore Usage Bits Warnings
+
+Change-Id: If1e010de32d2fc2febb3c8c5b450cf18d1d1cb70
+---
+ graphics/mapper/2.0/default/GrallocMapper.cpp | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/graphics/mapper/2.0/default/GrallocMapper.cpp b/graphics/mapper/2.0/default/GrallocMapper.cpp
+index d16143da..a7864669 100644
+--- a/graphics/mapper/2.0/default/GrallocMapper.cpp
++++ b/graphics/mapper/2.0/default/GrallocMapper.cpp
+@@ -105,8 +105,9 @@ bool GrallocMapper::validateDescriptorInfo(
+ 
+     if (descriptorInfo.usage & ~validUsageBits) {
+         // could not fail as gralloc may use the reserved bits...
+-        ALOGW("buffer descriptor with invalid usage bits 0x%" PRIx64,
+-              descriptorInfo.usage & ~validUsageBits);
++        // We don't need this to constantly spam the logs, so just comment it out
++        //ALOGW("buffer descriptor with invalid usage bits 0x%" PRIx64,
++        //      descriptorInfo.usage & ~validUsageBits);
+     }
+ 
+     return true;
+-- 
+2.25.1
+

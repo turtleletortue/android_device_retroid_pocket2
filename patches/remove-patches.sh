@@ -27,5 +27,10 @@ cd Trebuchet
 git reset --hard
 cd ../
 
+# Hardware/interfaces
+cd ../../hardware/interfaces
+git reset --hard
+cd ../..
+
 # Exit
-cd ../../device/retroid/pocket2/patches
+cd device/retroid/pocket2/patches

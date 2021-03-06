@@ -33,8 +33,13 @@ cd ../
 cd Trebuchet
 patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/Trebuchet/0001-Allow-Trebuchet-and-Launcher3Go-to-coexist.patch
 patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/Trebuchet/0002-Use-all-apps-button-in-Trebuchet.patch
-cd ../
+cd ../../..
+
+# Remove log spam of invalid usage bits
+cd hardware/interfaces
+patch -p1 < ../../device/retroid/pocket2/patches/hardware/interfaces/0001-Ignore-Usage-Bits-Warnings.patch
+cd ../..
 
 # Exit
-cd ../../device/retroid/pocket2/patches
+cd device/retroid/pocket2/patches
 echo "Done"
