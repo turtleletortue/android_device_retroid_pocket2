@@ -1,0 +1,42 @@
+Subject: [PATCH] Add Custom Build Version
+
+Change-Id: Icfba0d7b11e8939c1bd3b32dd09e3e541e686344
+---
+ res/values/strings.xml           | 4 ++++
+ res/xml/device_info_settings.xml | 5 +++++
+ 2 files changed, 9 insertions(+)
+
+diff --git a/res/values/strings.xml b/res/values/strings.xml
+index 9baaa7c561..f41d406852 100644
+--- a/res/values/strings.xml
++++ b/res/values/strings.xml
+@@ -2621,6 +2621,10 @@
+ 
+     <!-- About phone screen, status item label  [CHAR LIMIT=40] -->
+     <string name="firmware_version">Android version</string>
++    <!-- Custom version title -->
++    <string name="custom_version">Custom version</string>
++    <!-- Custom version name -->
++    <string name="custom_version_string">Testing Build</string>
+     <!-- About phone screen, status item label  [CHAR LIMIT=60] -->
+     <string name="security_patch">Android security patch level</string>
+     <!-- About phone screen, status item label  [CHAR LIMIT=40] -->
+diff --git a/res/xml/device_info_settings.xml b/res/xml/device_info_settings.xml
+index 52de82d70a..140a9ba6ad 100644
+--- a/res/xml/device_info_settings.xml
++++ b/res/xml/device_info_settings.xml
+@@ -86,6 +86,11 @@
+         <org.lineageos.internal.preference.deviceinfo.LineageVersionPreference
+                 android:key="lineage_version" />
+ 
++        <!-- Device custom version name -->
++        <Preference android:key="custom_version"
++                android:title="@string/custom_version"
++                android:summary="@string/custom_version_string"/>
++
+         <!-- LineageOS API version -->
+         <org.lineageos.internal.preference.deviceinfo.LineageAPIVersionPreference
+                 android:key="lineage_api_level" />
+-- 
+2.25.1
+
