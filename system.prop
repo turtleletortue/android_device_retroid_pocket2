@@ -57,6 +57,10 @@ ro.opengles.version=131072
 
 # Disable dirty region for Mali
 debug.hwui.render_dirty_regions=false
+debug.hwui.use_partial_updates=false
+
+debug.sf.latch_unsignaled=1
+persist.sys.display.clearMotion=1
 
 persist.sys.strictmode.visual=0
 persist.sys.strictmode.disable=1
