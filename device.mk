@@ -67,7 +67,8 @@ PRODUCT_PACKAGES += \
     fstab.mt6580 \
     ueventd.mt6580.rc \
     init.mt6580.usb.rc \
-    init.nvdata.rc 
+    init.nvdata.rc \
+    fstab.enableswap
 
 # Graphics
 PRODUCT_PACKAGES += \
@@ -140,8 +141,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant.conf \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
-
-
 
 # Tablet characteristics
 PRODUCT_CHARACTERISTICS := tablet
