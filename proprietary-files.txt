@@ -66,7 +66,8 @@ lib/libxtables.so
 lib/libvsync_hint.so
 lib/libvoicerecognition.so
 lib/libvoicerecognition_jni.so
-#lib/libterservice.so
+lib/libterservice.so
+lib/libprogrambinary.so
 lib/libshowlogo.so
 lib/libsf_debug.so
 lib/libnetworklocation.so
@@ -97,7 +98,9 @@ lib/libaal.so
 etc/wifi-apns.xml
 etc/usb_audio_policy_configuration.xml
 etc/r_submix_audio_policy_configuration.xml
-#etc/init/terserver.rc
+etc/init/terserver.rc
+etc/init/program_binary_service.rc
+lib/libaed.so
 etc/init/batterywarning.rc
 etc/default_volume_tables.xml
 etc/audio_policy_volumes.xml
@@ -107,7 +110,7 @@ etc/apns-conf.xml
 etc/a2dp_audio_policy_configuration.xml
 
 bin/tertestclient
-#bin/terservice
+bin/terservice
 bin/meta_tst
 bin/lcdc_screen_cap
 bin/boot_logo_updater
@@ -123,6 +126,11 @@ bin/profmand
 bin/mmp
 #bin/emdlogger1
 #bin/emdlogger5
+bin/program_binary_builder
+bin/program_binary_service
+
+# Include stock hwui to use patchelf with program_binary_builder for missing symbols
+lib/libhwui.so:lib/libhwuimtk.so
 
 lib/libvixld-arm.so
 lib/libvixld-arm64.so
