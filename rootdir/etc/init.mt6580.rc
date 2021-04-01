@@ -471,7 +471,7 @@ on post-fs-data
     chmod 0660 /dev/mtd/mtd9
     chown root system /dev/mtd/mtd9
 
-    chmod 0664 /sys/bus/platform/drivers/mem_bw_ctrl/concurrency_scenario
+    chmod 0666 /sys/bus/platform/drivers/mem_bw_ctrl/concurrency_scenario
     chown media media /sys/bus/platform/drivers/mem_bw_ctrl/concurrency_scenario
 
     #mtk_sched
