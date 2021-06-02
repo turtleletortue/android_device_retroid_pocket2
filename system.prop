@@ -58,4 +58,6 @@ ro.opengles.version=131072
 # Disable dirty region for Mali
 debug.hwui.render_dirty_regions=false
 
-ro.sf.lcd_density=160
+# Set UI elements to be larger (due to Pocket2's small screen)
+ro.sf.lcd_density=186
+
