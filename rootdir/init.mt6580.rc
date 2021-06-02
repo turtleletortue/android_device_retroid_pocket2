@@ -64,7 +64,7 @@ on property:persist.mediatek.fg.log.enable=1
     write /proc/sys/kernel/printk 8
 
 on charger
-    mount ext4 /dev/block/platform/mtk-msdc.0/11120000.msdc0/by-name/psystem /system ro wait
+    mount ext4 /dev/block/platform/mtk-msdc.0/11120000.msdc0/by-name/system /system ro wait
     #mount ubifs ...
     mount ubifs ubi@system /system ro wait
     start spm_script

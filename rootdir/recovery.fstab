@@ -1,5 +1,4 @@
-/dev/block/platform/mtk-msdc.0/11120000.msdc0/by-name/psystem /system ext4 ro wait
-#/dev/block/platform/mtk-msdc.0/11120000.msdc0/by-name/psystem /psystem ext4 ro wait
+/dev/block/platform/mtk-msdc.0/11120000.msdc0/by-name/system /system ext4 ro wait
 /dev/block/platform/mtk-msdc.0/11120000.msdc0/by-name/userdata /data ext4 noatime,nosuid,nodev,noauto_da_alloc,discard wait,check,resize,encryptable=/dev/block/platform/mtk-msdc.0/11120000.msdc0/by-name/metadata,
 /dev/block/platform/mtk-msdc.0/11120000.msdc0/by-name/cache /cache ext4 noatime,nosuid,nodev,noauto_da_alloc,discard wait,check
 
