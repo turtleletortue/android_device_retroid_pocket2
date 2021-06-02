@@ -64,15 +64,7 @@ on property:persist.mediatek.fg.log.enable=1
     write /proc/sys/kernel/printk 8
 
 on charger
-    mount_all /fstab.mt6580
-    chmod 0666 /dev/kmsg
-	write /sys/devices/platform/battery_meter/FG_daemon_log_level 7
-    
-    class_start charger
-
-    # disable USB
-    write /sys/devices/platform/mt_usb/cmode 0
-
+    setprop sys.powerctl reboot,leaving-off-mode-charging
 on fs
     write /proc/bootprof "INIT:Mount_START"
     mount_all /fstab.mt6580
