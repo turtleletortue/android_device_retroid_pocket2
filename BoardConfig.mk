@@ -94,6 +94,11 @@ TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
 TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
+# Shims
+TARGET_LD_SHIM_LIBS := \
+    /vendor/lib/libMtkOmxVdecEx.so|libshim_graphic_buffer.so \
+    /vendor/lib/egl/libGLES_mali.so|libshim_graphic_buffer.so
+
 # LineageOS Hardware
 BOARD_USES_LINEAGE_HARDWARE := true
 BOARD_HARDWARE_CLASS := $(DEVICE_PATH)/lineagehw    
