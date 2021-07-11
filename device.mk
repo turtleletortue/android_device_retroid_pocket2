@@ -1,5 +1,5 @@
 # Call AOSP packages
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/halium.mk)
 
 # Android Go defaults
 $(call inherit-product, $(SRC_TARGET_DIR)/product/go_defaults.mk)
