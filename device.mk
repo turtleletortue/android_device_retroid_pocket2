@@ -2,13 +2,13 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/halium.mk)
 
 # Android Go defaults
-$(call inherit-product, $(SRC_TARGET_DIR)/product/go_defaults.mk)
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/go_defaults.mk)
 
 # Launched with 8.1
-$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_o_mr1.mk)
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_o_mr1.mk)
 
 # Add all product locales
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Vendor
 $(call inherit-product-if-exists, vendor/retroid/pocket2/pocket2-vendor.mk)
