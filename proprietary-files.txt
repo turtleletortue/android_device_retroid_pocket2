@@ -369,7 +369,6 @@ bin/boot.sh
 bin/af7133ed
 
 # Apps to include
-#app/Toolbox/Toolbox.apk
 
 etc/recovery.fstab
 etc/partition_permission.sh

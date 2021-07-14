@@ -58,23 +58,6 @@ PRODUCT_PACKAGES += \
     libGLES_android \
     libion
 
-# Retroid Apps
-PRODUCT_PACKAGES += \
-    Toolbox \
-    RsMappingLite
-
-# Leanback Launcher
-PRODUCT_PACKAGES += \
-    Leanback
-
-# Android stock launcher
-PRODUCT_PACKAGES += \
-    Launcher3
-
-# RePoLa (community, open source launcher)
-PRODUCT_PACKAGES += \
-    RePoLa
-
 # OTA Update Setup
 #PRODUCT_PROPERTY_OVERRIDES += \
 #    cm.updater.uri=https://raw.githubusercontent.com/turtleletortue/lineage_ota/cm-14.1/lineageos_pocket2.json
