@@ -88,6 +88,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     RePoLa
 
+# LeanbackIME (Android TV keyboard, from Android 11)
+PRODUCT_PACKAGES += \
+    LeanbackIME
+
 # VNDK-SP
 PRODUCT_PACKAGES += \
     vndk-sp
@@ -98,7 +102,7 @@ PRODUCT_PACKAGES += \
 # DRM
 PRODUCT_PACKAGES += \
     libdrm \
-    libmockdrmcryptoplugin \
+    libmockdrmcryptoplugin 
 
 # Default default.prop properties
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
