@@ -8,6 +8,11 @@ cd bootable/recovery
 patch -p1 < ../../device/retroid/pocket2/patches/bootable/recovery/0001-pocket2-Fix-Items-to-Fit-on-Screen.patch
 cd ../../
 
+# Build/make/core patch
+cd build/make/
+patch -p1 < ../../device/retroid/pocket2/patches/build/make/core/fix_atv_target.patch
+cd ../../
+
 # Screenshots and Power Off UI patches
 cd frameworks/base
 patch -p1 < ../../device/retroid/pocket2/patches/frameworks/base/0001-Pocket2-Fix-Screenshots.patch
@@ -32,6 +37,11 @@ cd ../
 cd Trebuchet
 patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/Trebuchet/0001-Allow-Trebuchet-and-Launcher3Go-to-coexist.patch
 patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/Trebuchet/0002-Use-all-apps-button-in-Trebuchet.patch
+cd ../
+
+# TVSettings patches
+cd TvSettings
+patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/TvSettings/add-reboot-to-recovery.patch
 cd ../../..
 
 # Remove log spam of invalid usage bits

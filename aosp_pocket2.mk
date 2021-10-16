@@ -1,3 +1,6 @@
+# Call AOSP packages
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+
 # Call device.mk (shared between CM/LineageOS & AOSP)
 $(call inherit-product, device/retroid/pocket2/device.mk)
 

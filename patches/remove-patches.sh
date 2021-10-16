@@ -7,6 +7,11 @@ cd bootable/recovery
 git reset --hard 
 cd ../../
 
+# Build/make/core
+cd build/make/core
+git reset --hard 
+cd ../../..
+
 # Frameworks/base
 cd frameworks/base
 git reset --hard
@@ -24,6 +29,11 @@ cd ../
 
 # Trebuchet
 cd Trebuchet
+git reset --hard
+cd ../
+
+# TvSettings
+cd TvSettings
 git reset --hard
 cd ../
 

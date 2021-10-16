@@ -18,6 +18,15 @@ add_lunch_combo lineage_pocket2-userdebug
 # Eng builds
 add_lunch_combo lineage_pocket2-eng
 
+# LineageOS ATV builds
+# User builds
+add_lunch_combo lineage_atv_pocket2-user
+# With debug stuff
+add_lunch_combo lineage_atv_pocket2-userdebug
+
+# Eng builds
+add_lunch_combo lineage_atv_pocket2-eng
+
 # Grab repola
 echo "Deleting old versions of repola"
 echo " "

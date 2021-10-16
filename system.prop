@@ -67,9 +67,3 @@ persist.sys.strictmode.disable=1
 
 config.disable_cameraservice=true
 
-# Set UI elements to be larger (due to Pocket2's small screen)
-ro.sf.lcd_density=186
-
-# OTA URL
-lineage.updater.uri=https://raw.githubusercontent.com/turtleletortue/OTA/15.1/15.1_pocket2.json
-

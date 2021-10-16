@@ -1,0 +1,6 @@
+[
+  {
+    "repository": "android_device_lineage_atv",
+    "target_path": "device/lineage/atv"
+  }
+]

@@ -1,6 +1,3 @@
-# Call AOSP packages
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
-
 # Android Go defaults
 $(call inherit-product, $(SRC_TARGET_DIR)/product/go_defaults.mk)
 
@@ -79,18 +76,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Toolbox \
     RsMappingLite
-
-# Android stock launcher
-PRODUCT_PACKAGES += \
-    Launcher3Go
-
-# RePoLa (community, open source launcher)
-PRODUCT_PACKAGES += \
-    RePoLa
-
-# LeanbackIME (Android TV keyboard, from Android 11)
-PRODUCT_PACKAGES += \
-    LeanbackIME
 
 # VNDK-SP
 PRODUCT_PACKAGES += \
