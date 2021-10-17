@@ -28,3 +28,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=140 \
     lineage.updater.uri=https://raw.githubusercontent.com/turtleletortue/OTA/15.1/15.1_atv_pocket2.json
 
+# Tablet characteristics
+PRODUCT_CHARACTERISTICS := tv
+
