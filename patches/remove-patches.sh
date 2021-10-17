@@ -35,6 +35,7 @@ cd ../
 # TvSettings
 cd TvSettings
 git reset --hard
+git clean -f -d
 cd ../
 
 # Hardware/interfaces
