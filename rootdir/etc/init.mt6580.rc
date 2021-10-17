@@ -94,6 +94,9 @@ on fs
     write /proc/sys/vm/page-cluster 0
     swapon_all /fstab.enableswap
 
+    # Screen resolution fix
+    setprop ro.config.size_override 640,480
+
 on fs
 
    mount iso9660 loop@/vendor/etc/iAmCdRom.iso /mnt/cd-rom ro
@@ -165,6 +168,10 @@ on post-fs-data
 
     # NFC
     mkdir /data/nfc_socket 0771 nfc radio
+
+    # Screen resolution fix
+    setprop persist.sys.display.resolution 640x480
+    setprop persist.vendor.sys.display.resolution 640x480
 
 # -----------------------
 # Add by MTK
