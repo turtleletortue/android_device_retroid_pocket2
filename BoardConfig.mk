@@ -13,9 +13,9 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := cortex-a7
 
-# Screen
-TARGET_SCREEN_HEIGHT := 640
-TARGET_SCREEN_WIDTH := 480
+# Screen (For Bootanimation generation)
+TARGET_SCREEN_HEIGHT := 800
+TARGET_SCREEN_WIDTH := 640
 
 # Kernel
 TARGET_KERNEL_ARCH := arm
