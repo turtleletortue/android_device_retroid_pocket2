@@ -23,3 +23,7 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay/lineage
 
 # Remove extra apps
 PRODUCT_PACKAGES += RemovePackages
+
+# OTA URL
+PRODUCT_PROPERTY_OVERRIDES += \
+    lineage.updater.uri=https://raw.githubusercontent.com/turtleletortue/OTA/15.1/15.1_pocket2.json

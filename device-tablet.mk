@@ -11,8 +11,7 @@ PRODUCT_PACKAGES += \
     LeanbackIME
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=186 \
-    lineage.updater.uri=https://raw.githubusercontent.com/turtleletortue/OTA/15.1/15.1_pocket2.json
+    ro.sf.lcd_density=186
 
 # Tablet characteristics
 PRODUCT_CHARACTERISTICS := tablet
