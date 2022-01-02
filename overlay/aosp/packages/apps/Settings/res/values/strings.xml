@@ -3,7 +3,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <!-- Title of about (device type) in main settings screen -->
-    <string name="about_settings" product="tablet">About Retroid Pocket 2</string>
-    <string name="about_settings" product="default">About Retroid Pocket 2</string>
+    <string name="about_settings" product="tablet">About Retroid Pocket</string>
+    <string name="about_settings" product="default">About Retroid Pocket</string>
 
 </resources>
