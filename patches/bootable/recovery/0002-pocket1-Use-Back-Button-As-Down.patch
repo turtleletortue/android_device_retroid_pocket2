@@ -1,0 +1,27 @@
+Subject: [PATCH] pocket1 Use Back Button As Down on Pocket1
+ * on the pocket1, the volume down buttons is unusually registered as the
+ back button. In Android, this is worked around by changing it in the kl
+ file. So modify Lineage recovery make the back button do the same as the
+ volume down button.
+
+diff --git a/device.cpp b/device.cpp
+index 13eb7d2b..47fbda55 100644
+--- a/device.cpp
++++ b/device.cpp
+@@ -156,6 +156,7 @@ int Device::HandleMenuKey(int key, bool visible) {
+     case KEY_DOWN:
+     case KEY_VOLUMEDOWN:
+     case KEY_MENU:
++    case KEY_BACK:
+       return kHighlightDown;
+ 
+     case KEY_LEFTSHIFT:
+@@ -175,7 +176,6 @@ int Device::HandleMenuKey(int key, bool visible) {
+       return kGoHome;
+ 
+     case KEY_BACKSPACE:
+-    case KEY_BACK:
+       return kGoBack;
+ 
+     case KEY_REFRESH:
+
