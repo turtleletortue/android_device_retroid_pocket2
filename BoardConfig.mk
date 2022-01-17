@@ -79,7 +79,7 @@ TARGET_RECOVERY_FSTAB := device/retroid/pocket2/rootdir/etc/recovery.fstab
 TARGET_PREBUILT_RECOVERY_KERNEL := device/retroid/pocket2/kernel
 
 # Sepolicy
-BOARD_SEPOLICY_DIRS := \
+BOARD_SEPOLICY_DIRS += \
     device/retroid/pocket2/sepolicy
 
 # Bluetooth
