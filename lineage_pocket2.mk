@@ -7,6 +7,9 @@ $(call inherit-product, device/retroid/pocket2/device.mk)
 # Call device-tablet.mk (Used for non-ATV builds)
 $(call inherit-product, device/retroid/pocket2/device-tablet.mk)
 
+# Turtle extras
+$(call inherit-product-if-exists, vendor/turtle/pocket2.mk)
+
 # Call tablet config
 $(call inherit-product, vendor/lineage/config/common_mini_tablet_wifionly.mk)
 
