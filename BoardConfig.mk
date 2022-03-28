@@ -145,3 +145,7 @@ TARGET_LD_SHIM_LIBS := \
 
 # Ignore Neverallow errors for sepolicy
 SELINUX_IGNORE_NEVERALLOWS := true
+
+# Do not use 64bit binder
+TARGET_USES_64_BIT_BINDER := false
+
