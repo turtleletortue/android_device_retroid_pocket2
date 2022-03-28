@@ -28,11 +28,14 @@ add_lunch_combo lineage_atv_pocket2-userdebug
 add_lunch_combo lineage_atv_pocket2-eng
 
 # Grab repola
-echo "Deleting old versions of repola"
 echo " "
+echo "Checking for repola"
 workingDir=$(pwd)
-rm $workingDir/device/retroid/pocket2/prebuilt/RePoLa/*.apk
-echo "Removed old version"
-echo ""
-echo "Downloading latest"
-cd device/retroid/pocket2/prebuilt/RePoLa/ && wget https://github.com/sreichholf/repola/releases/latest/download/launcher-release.apk && echo " " && echo "Success!" && cd ../../../../../
+if [ -f $workingDir/device/retroid/pocket2/prebuilt/RePoLa/launcher-release.apk ]; then
+    echo "repola apk exists, proceed"
+fi
+if [ ! -f $workingDir/device/retroid/pocket2/prebuilt/RePoLa/launcher-release.apk ]; then
+    echo "Downloading latest"
+    cd device/retroid/pocket2/prebuilt/RePoLa/ && wget https://github.com/sreichholf/repola/releases/latest/download/launcher-release.apk && echo " " && echo "Success!" && cd ../../../../../
+fi
+echo " "
