@@ -138,3 +138,8 @@ USE_XML_AUDIO_POLICY_CONF := 1
 # AAPT CONFIG
 PRODUCT_AAPT_PREF_CONFIG := mdpi
 
+# Shims
+TARGET_LD_SHIM_LIBS := \
+    /vendor/lib/libMtkOmxVdecEx.so|libshim_graphic_buffer.so \
+    /vendor/lib/egl/libGLES_mali.so|libshim_graphic_buffer.so
+

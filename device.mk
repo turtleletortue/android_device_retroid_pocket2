@@ -89,6 +89,10 @@ PRODUCT_PACKAGES += \
     libdrm \
     libmockdrmcryptoplugin 
 
+# Shims
+PRODUCT_PACKAGES += \
+    libshim_graphic_buffer
+
 # Default default.prop properties
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp,adb \
