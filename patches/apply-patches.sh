@@ -16,7 +16,6 @@ cd ../../
 
 # Screenshots and Power Off UI patches
 cd frameworks/base
-patch -p1 < ../../device/retroid/pocket2/patches/frameworks/base/0001-Pocket2-Fix-Screenshots.patch
 patch -p1 < ../../device/retroid/pocket2/patches/frameworks/base/0002-Use-Pre-Oreo-Power-Off-UI-and-add-Reboot-to-Recovery.patch
 cd ../../
 
