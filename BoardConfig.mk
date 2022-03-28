@@ -77,7 +77,6 @@ BOARD_CHARGER_SHOW_PERCENTAGE := true
 
 # Recovery resources
 TARGET_RECOVERY_FSTAB := device/retroid/pocket2/rootdir/etc/recovery.fstab
-TARGET_PREBUILT_RECOVERY_KERNEL := device/retroid/pocket2/kernel
 
 # Sepolicy
 BOARD_SEPOLICY_DIRS += \
