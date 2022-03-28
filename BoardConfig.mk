@@ -143,3 +143,5 @@ TARGET_LD_SHIM_LIBS := \
     /vendor/lib/libMtkOmxVdecEx.so|libshim_graphic_buffer.so \
     /vendor/lib/egl/libGLES_mali.so|libshim_graphic_buffer.so
 
+# Ignore Neverallow errors for sepolicy
+SELINUX_IGNORE_NEVERALLOWS := true
