@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- [CHAR LIMIT=40] Title of dialog that is shown when system is starting. -->
+    <string name="android_start_title" product="default">Retroid Pocket is starting\u2026</string>
+    <!-- [CHAR LIMIT=40] Title of dialog that is shown when system is starting. -->
+    <string name="android_start_title" product="tablet">Retroid Pocket is starting\u2026</string>
+
+</resources>
