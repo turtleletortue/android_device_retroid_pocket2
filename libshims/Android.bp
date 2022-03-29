@@ -30,3 +30,11 @@ cc_library_shared {
     ],
     proprietary: true,
 }
+
+cc_library_shared {
+    name: "libshim_mtkomx",
+    srcs: [
+        "omx/omx.cpp",
+    ],
+    proprietary: true,
+}
