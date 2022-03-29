@@ -1,0 +1,15 @@
+diff --git a/rootdir/etc/ld.config.vndk_lite.txt b/rootdir/etc/ld.config.vndk_lite.txt
+index db65c14fc..1333e5ae5 100644
+--- a/rootdir/etc/ld.config.vndk_lite.txt
++++ b/rootdir/etc/ld.config.vndk_lite.txt
+@@ -91,6 +91,9 @@ namespace.sphal.links = default,vndk,rs
+ namespace.sphal.link.default.shared_libs  = %LLNDK_LIBRARIES%
+ namespace.sphal.link.default.shared_libs += %SANITIZER_RUNTIME_LIBRARIES%
+ 
++# Needed by libGLES_mali.so
++namespace.sphal.link.default.shared_libs += libutilscallstack.so:libui.so:libbacktrace.so:android.hardware.graphics.common@1.1.so:libbinder.so:libbufferhubqueue.so:libunwind.so:libpdx_default_transport.so:android.hidl.token@1.0-utils.so:android.hardware.graphics.bufferqueue@1.0.so:android.hardware.configstore@1.0.so:android.hardware.configstore-utils.so
++
+ namespace.sphal.link.vndk.shared_libs = %VNDK_SAMEPROCESS_LIBRARIES%
+ 
+ # Renderscript gets separate namespace
+
