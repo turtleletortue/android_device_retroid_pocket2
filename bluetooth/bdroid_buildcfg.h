@@ -19,6 +19,6 @@
 
 #define BTA_DISABLE_DELAY 1000 /* in milliseconds */
 
-#define BTM_DEF_LOCAL_NAME   "Retroid Pocket2"
+#define BTM_DEF_LOCAL_NAME   "Retroid Pocket"
 
 #endif
