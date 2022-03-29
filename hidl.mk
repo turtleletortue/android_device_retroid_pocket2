@@ -82,9 +82,8 @@ PRODUCT_PACKAGES += \
 #    android.hardware.broadcastradio@1.1-service
 
 # USB 
-#PRODUCT_PACKAGES += \
-#    android.hardware.usb@1.0 \
-#    android.hardware.usb@1.0-service.basic \
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service.basic \
 #    android.hardware.usb.gadget@1.0-impl \
 #    android.hardware.usb.gadget@1.0-service
 
