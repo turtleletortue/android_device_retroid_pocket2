@@ -121,9 +121,6 @@ TARGET_USES_MKE2FS := true
 # System Prop
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
-# Vendor Prop
-TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
-
 # Exfat
 TARGET_EXFAT_DRIVER := exfat
 

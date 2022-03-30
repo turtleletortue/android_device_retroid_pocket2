@@ -16,6 +16,9 @@ $(call inherit-product-if-exists, vendor/turtle/extras/turtle-vendor.mk)
 # Hidl
 include $(LOCAL_PATH)/hidl.mk
 
+# Include vendor properties
+include $(LOCAL_PATH)/vendor_prop.mk
+
 # Wifi
 PRODUCT_PACKAGES += \
     libwpa_client \
