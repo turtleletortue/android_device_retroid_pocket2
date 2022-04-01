@@ -3,8 +3,10 @@ VNDK_SP_LIBRARIES := \
     android.hardware.graphics.common@1.0 \
     android.hardware.graphics.common@1.1 \
     android.hardware.graphics.mapper@2.0 \
+    android.hardware.graphics.mapper@2.1 \
     android.hardware.renderscript@1.0 \
     android.hidl.memory@1.0 \
+    android.hidl.memory@1.0-impl \
     android.hidl.memory.token@1.0 \
     libbacktrace \
     libbase \
@@ -19,6 +21,7 @@ VNDK_SP_LIBRARIES := \
     libhidlmemory \
     libhidltransport \
     libhwbinder \
+    libhwbinder_noltopgo \
     libion \
     liblzma \
     libpng \
@@ -26,7 +29,10 @@ VNDK_SP_LIBRARIES := \
     libRSDriver \
     libRS_internal \
     libunwind \
+    libunwindstack \
     libutils \
     libutilscallstack \
     libui \
-    libbinder
+    libbinder \
+    libz \
+    libdexfile

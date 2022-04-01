@@ -97,6 +97,11 @@ PRODUCT_PACKAGES += \
     libshim_graphic_buffer \
     libshim_mtkomx
 
+# Other libraries
+PRODUCT_PACKAGES += \
+    libunwindstack \
+    libdexfile
+
 # Default default.prop properties
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp,adb \
