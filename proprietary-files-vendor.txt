@@ -70,7 +70,7 @@ vendor/etc/agps_profiles_conf2.xml
 #vendor/etc/ecc_list_OP17.xml
 #vendor/etc/ecc_list_OP18.xml
 #vendor/etc/ecc_list.xml
-#vendor/etc/init/android.hardware.audio@2.0-service-mediatek.rc
+vendor/etc/init/android.hardware.audio@2.0-service-mediatek.rc
 vendor/etc/init/android.hardware.bluetooth@1.0-service-mediatek.rc
 #vendor/etc/init/android.hardware.broadcastradio@1.1-service.rc
 #vendor/etc/init/android.hardware.drm@1.0-service.rc
@@ -337,7 +337,7 @@ vendor/firmware/pcm_suspend.bin
 #vendor/lib/egl/libGLESv1_CM_mtk.so
 #vendor/lib/egl/libGLESv2_mtk.so
 vendor/lib/egl/libGLES_mali.so
-#vendor/lib/hw/android.hardware.audio@2.0-impl-mediatek.so
+vendor/lib/hw/android.hardware.audio@2.0-impl-mediatek.so
 #vendor/lib/hw/android.hardware.audio.effect@2.0-impl.so
 vendor/lib/hw/android.hardware.bluetooth@1.0-impl-mediatek.so
 #vendor/lib/hw/android.hardware.camera.provider@2.4-impl-mediatek.so
@@ -537,7 +537,7 @@ vendor/lib/modules/wmt_chrdev_wifi.ko
 vendor/lib/modules/wmt_drv.ko
 vendor/lib/mtk-rilproxy.so
 vendor/lib/mtk-ril.so
-#vendor/lib/vendor.mediatek.hardware.audio@2.1_vendor.so
+vendor/lib/vendor.mediatek.hardware.audio@2.1_vendor.so
 #vendor/lib/vendor.mediatek.hardware.camera.ccap@1.0_vendor.so
 #vendor/lib/vendor.mediatek.hardware.camera.device@1.1_vendor.so
 vendor/lib/vendor.mediatek.hardware.lbs@1.0_vendor.so
@@ -628,7 +628,7 @@ vendor/etc/init/spm_script.rc
 vendor/etc/init/rild.rc
 vendor/etc/init/init.wmt_chrdev_wifi.rc
 vendor/etc/init/fuelgauged_init.rc
-#vendor/etc/init/android.hardware.audio@2.0-service-mediatek.rc
+vendor/etc/init/android.hardware.audio@2.0-service-mediatek.rc
 vendor/etc/init/android.hardware.sensors@1.0-service-mediatek.rc
 
 vendor/bin/viaradiooptions
