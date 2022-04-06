@@ -1,26 +1,36 @@
 Subject: [PATCH] Ignore Usage Bits Warnings
-
-Change-Id: If1e010de32d2fc2febb3c8c5b450cf18d1d1cb70
----
- graphics/mapper/2.0/default/GrallocMapper.cpp | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/graphics/mapper/2.0/default/GrallocMapper.cpp b/graphics/mapper/2.0/default/GrallocMapper.cpp
-index d16143da..a7864669 100644
---- a/graphics/mapper/2.0/default/GrallocMapper.cpp
-+++ b/graphics/mapper/2.0/default/GrallocMapper.cpp
-@@ -105,8 +105,9 @@ bool GrallocMapper::validateDescriptorInfo(
+diff --git a/graphics/mapper/2.0/utils/passthrough/include/mapper-passthrough/2.0/Gralloc0Hal.h b/graphics/mapper/2.0/utils/passthrough/include/mapper-passthrough/2.0/Gralloc0Hal.h
+index 7369ac759..51ec64c81 100644
+--- a/graphics/mapper/2.0/utils/passthrough/include/mapper-passthrough/2.0/Gralloc0Hal.h
++++ b/graphics/mapper/2.0/utils/passthrough/include/mapper-passthrough/2.0/Gralloc0Hal.h
+@@ -64,8 +64,9 @@ class Gralloc0HalImpl : public Hal {
  
-     if (descriptorInfo.usage & ~validUsageBits) {
-         // could not fail as gralloc may use the reserved bits...
--        ALOGW("buffer descriptor with invalid usage bits 0x%" PRIx64,
--              descriptorInfo.usage & ~validUsageBits);
-+        // We don't need this to constantly spam the logs, so just comment it out
-+        //ALOGW("buffer descriptor with invalid usage bits 0x%" PRIx64,
-+        //      descriptorInfo.usage & ~validUsageBits);
-     }
+         const uint64_t validUsageBits = getValidBufferUsageMask();
+         if (descriptorInfo.usage & ~validUsageBits) {
+-            ALOGW("buffer descriptor with invalid usage bits 0x%" PRIx64,
+-                  descriptorInfo.usage & ~validUsageBits);
++            // We don't need this to constantly spam the logs, so just comment it out
++            //ALOGW("buffer descriptor with invalid usage bits 0x%" PRIx64,
++            //      descriptorInfo.usage & ~validUsageBits);
+         }
  
-     return true;
+         *outDescriptor = grallocEncodeBufferDescriptor(descriptorInfo);
+diff --git a/graphics/mapper/2.0/utils/passthrough/include/mapper-passthrough/2.0/Gralloc1Hal.h b/graphics/mapper/2.0/utils/passthrough/include/mapper-passthrough/2.0/Gralloc1Hal.h
+index d9beb4f67..ef3c27769 100644
+--- a/graphics/mapper/2.0/utils/passthrough/include/mapper-passthrough/2.0/Gralloc1Hal.h
++++ b/graphics/mapper/2.0/utils/passthrough/include/mapper-passthrough/2.0/Gralloc1Hal.h
+@@ -84,8 +84,9 @@ class Gralloc1HalImpl : public Hal {
+ 
+         const uint64_t validUsageBits = getValidBufferUsageMask();
+         if (descriptorInfo.usage & ~validUsageBits) {
+-            ALOGW("buffer descriptor with invalid usage bits 0x%" PRIx64,
+-                  descriptorInfo.usage & ~validUsageBits);
++            // We don't need this to constantly spam the logs, so just comment it out
++            //ALOGW("buffer descriptor with invalid usage bits 0x%" PRIx64,
++            //      descriptorInfo.usage & ~validUsageBits);
+         }
+ 
+         *outDescriptor = grallocEncodeBufferDescriptor(descriptorInfo);
 -- 
 2.25.1
 

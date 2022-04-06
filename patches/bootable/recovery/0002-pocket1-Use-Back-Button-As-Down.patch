@@ -5,18 +5,18 @@ Subject: [PATCH] pocket1 Use Back Button As Down on Pocket1
  volume down button.
 
 diff --git a/device.cpp b/device.cpp
-index 13eb7d2b..47fbda55 100644
+index 067a0082..ba3a0e4e 100644
 --- a/device.cpp
 +++ b/device.cpp
-@@ -156,6 +156,7 @@ int Device::HandleMenuKey(int key, bool visible) {
-     case KEY_DOWN:
-     case KEY_VOLUMEDOWN:
+@@ -152,6 +152,7 @@ int Device::HandleMenuKey(int key, bool visible) {
      case KEY_MENU:
+     case BTN_NORTH:
+     case BTN_DPAD_DOWN:
 +    case KEY_BACK:
        return kHighlightDown;
  
      case KEY_LEFTSHIFT:
-@@ -175,7 +176,6 @@ int Device::HandleMenuKey(int key, bool visible) {
+@@ -180,7 +181,6 @@ int Device::HandleMenuKey(int key, bool visible) {
        return kGoHome;
  
      case KEY_BACKSPACE:

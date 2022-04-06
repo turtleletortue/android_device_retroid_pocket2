@@ -12,10 +12,18 @@ Change-Id: I6a9da2b5006342c557a02a90544f48d86c49abce
  1 file changed, 102 insertions(+), 31 deletions(-)
 
 diff --git a/packages/SystemUI/src/com/android/systemui/globalactions/GlobalActionsDialog.java b/packages/SystemUI/src/com/android/systemui/globalactions/GlobalActionsDialog.java
-index a3fe7412926..682422f7407 100644
+index 2b255f0b91f0..d3558b738e0c 100644
 --- a/packages/SystemUI/src/com/android/systemui/globalactions/GlobalActionsDialog.java
 +++ b/packages/SystemUI/src/com/android/systemui/globalactions/GlobalActionsDialog.java
-@@ -116,6 +116,14 @@ import java.util.ArrayList;
+@@ -80,6 +80,7 @@ import android.view.Window;
+ import android.view.WindowManager;
+ import android.view.WindowManagerGlobal;
+ import android.view.accessibility.AccessibilityEvent;
++import android.widget.AdapterView;
+ import android.widget.AdapterView.OnItemLongClickListener;
+ import android.widget.BaseAdapter;
+ import android.widget.FrameLayout;
+@@ -116,6 +117,14 @@ import java.util.ArrayList;
  import java.util.BitSet;
  import java.util.List;
  
@@ -30,7 +38,7 @@ index a3fe7412926..682422f7407 100644
  /**
   * Helper to show the global actions dialog.  Each item is an {@link Action} that
   * may show depending on whether the keyguard is showing, and whether the device
-@@ -414,6 +422,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
+@@ -427,6 +436,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
          if (!mIsRestartMenu) {
              mItems.add(new PowerAction());
              mItems.add(new RestartAction());
@@ -38,11 +46,11 @@ index a3fe7412926..682422f7407 100644
          }
  
          ArraySet<String> addedKeys = new ArraySet<String>();
-@@ -480,7 +489,14 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
+@@ -512,7 +522,14 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
  
          mAdapter = new MyAdapter();
  
--        OnItemLongClickListener onItemLongClickListener = new OnItemLongClickListener() {
+-        OnItemLongClickListener onItemLongClickListener = (parent, view, position, id) -> {
 +        AlertParams params = new AlertParams(mContext);
 +        params.mAdapter = mAdapter;
 +        params.mOnClickListener = this;
@@ -50,16 +58,16 @@ index a3fe7412926..682422f7407 100644
 +
 +        ActionsDialog dialog = new ActionsDialog(mContext, params);
 +
-+        /*OnItemLongClickListener onItemLongClickListener = new OnItemLongClickListener() {
-             @Override
-             public boolean onItemLongClick(AdapterView<?> parent, View view, int position,
-                     long id) {
-@@ -492,9 +508,25 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
-                 return false;
-             }
++        /*OnItemLongClickListener onItemLongClickListener = (parent, view, position, id) -> {
+             final Action action = mAdapter.getItem(position);
+             if (action instanceof LongPressAction) {
+                 mDialog.dismiss();
+@@ -521,9 +538,25 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
+             return false;
          };
--        ActionsDialog dialog = new ActionsDialog(mContext, this, mAdapter, onItemLongClickListener);
-+        ActionsDialog dialog = new ActionsDialog(mContext, this, mAdapter, onItemLongClickListener);*/
+         ActionsDialog dialog = new ActionsDialog(mContext, this, mAdapter, onItemLongClickListener,
+-                mSeparatedEmergencyButtonEnabled);
++                mSeparatedEmergencyButtonEnabled);*/
          dialog.setCanceledOnTouchOutside(false); // Handled by the custom class.
 -        dialog.setKeyguardShowing(mKeyguardShowing);
 +        //dialog.setKeyguardShowing(mKeyguardShowing);
@@ -81,13 +89,14 @@ index a3fe7412926..682422f7407 100644
 +        dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
  
          dialog.setOnDismissListener(this);
- 
-@@ -1112,11 +1144,12 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
+         dialog.setOnShowListener(this);
+@@ -1167,12 +1200,13 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
  
          public View getView(int position, View convertView, ViewGroup parent) {
              Action action = getItem(position);
 -            View view = action.create(mContext, convertView, parent, LayoutInflater.from(mContext));
 +            /*View view = action.create(mContext, convertView, parent, LayoutInflater.from(mContext));
+             // Only the two top items get white background.
              if (position == 2 && !mIsRestartMenu) {
                  HardwareUiLayout.get(parent).setDivisionView(view);
              }
@@ -97,7 +106,7 @@ index a3fe7412926..682422f7407 100644
          }
      }
  
-@@ -1211,7 +1244,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
+@@ -1267,7 +1301,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
  
          public View create(
                  Context context, View convertView, ViewGroup parent, LayoutInflater inflater) {
@@ -106,33 +115,29 @@ index a3fe7412926..682422f7407 100644
                      false);
  
              ImageView icon = (ImageView) v.findViewById(R.id.icon);
-@@ -1605,20 +1638,23 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
+@@ -1666,22 +1700,25 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
              ColorExtractor.OnColorsChangedListener {
  
          private final Context mContext;
 +        private final AlertController mAlert;
          private final MyAdapter mAdapter;
 -        private final LinearLayout mListView;
--        private final HardwareUiLayout mHardwareLayout;
--        private final OnClickListener mClickListener;
--        private final OnItemLongClickListener mLongClickListener;
--        private final GradientDrawable mGradientDrawable;
--        private final ColorExtractor mColorExtractor;
++        /*private final LinearLayout mListView;
+         private final FrameLayout mSeparatedView;
+         private final HardwareUiLayout mHardwareLayout;
+         private final OnClickListener mClickListener;
+         private final OnItemLongClickListener mLongClickListener;
+         private final GradientDrawable mGradientDrawable;
+         private final ColorExtractor mColorExtractor;
 -        private boolean mKeyguardShowing;
--
++        private boolean mKeyguardShowing; */
+         private boolean mShouldDisplaySeparatedButton;
+ 
 -        public ActionsDialog(Context context, OnClickListener clickListener, MyAdapter adapter,
-+        //private final LinearLayout mListView;
-+        //private final HardwareUiLayout mHardwareLayout;
-+        //private final OnClickListener mClickListener;
-+        //private final OnItemLongClickListener mLongClickListener;
-+        //private final GradientDrawable mGradientDrawable;
-+        //private final ColorExtractor mColorExtractor;
-+        //private boolean mKeyguardShowing;
-+
 +        /*public ActionsDialog(Context context, OnClickListener clickListener, MyAdapter adapter,
-                 OnItemLongClickListener longClickListener) {
+                 OnItemLongClickListener longClickListener, boolean shouldDisplaySeparatedButton) {
 -            super(context, com.android.systemui.R.style.Theme_SystemUI_Dialog_GlobalActions);
-+            super(context, com.android.systemui.R.style.Theme_SystemUI_Dialog_GlobalActions);*/
++            super(context, com.android.systemui.R.style.Theme_SystemUI_Dialog_GlobalActions); */
 +        public ActionsDialog(Context context, AlertParams params) {
 +            super(context, getDialogTheme(context));
              mContext = context;
@@ -141,12 +146,12 @@ index a3fe7412926..682422f7407 100644
              mClickListener = clickListener;
              mLongClickListener = longClickListener;
              mGradientDrawable = new GradientDrawable(mContext);
-@@ -1641,10 +1677,19 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
-             setContentView(com.android.systemui.R.layout.global_actions_wrapped);
-             mListView = findViewById(android.R.id.list);
-             mHardwareLayout = HardwareUiLayout.get(mListView);
--            mHardwareLayout.setOutsideTouchListener(view -> dismiss());
-+            mHardwareLayout.setOutsideTouchListener(view -> dismiss());*/
+@@ -1726,10 +1763,19 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
+                     event.getText().add(mContext.getString(R.string.global_actions));
+                     return true;
+                 }
+-            });
++            });*/
 +            mAlert = AlertController.create(mContext, this, getWindow());
 +            mAdapter = (MyAdapter) params.mAdapter;
 +            params.apply(mAlert);
@@ -161,11 +166,11 @@ index a3fe7412926..682422f7407 100644
 +
 +        /*private void updateList() {
              mListView.removeAllViews();
+             mSeparatedView.removeAllViews();
              for (int i = 0; i < mAdapter.getCount(); i++) {
-                 View v = mAdapter.getView(i, null, mListView);
-@@ -1654,34 +1699,38 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
+@@ -1742,13 +1788,13 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                          mLongClickListener.onItemLongClick(null, v, pos, 0));
-                 mListView.addView(v);
+                 parentView.addView(v);
              }
 -        }
 +        }*/
@@ -175,24 +180,34 @@ index a3fe7412926..682422f7407 100644
              super.setCanceledOnTouchOutside(true);
              super.onStart();
 -            updateList();
-+            //updateList();
++            /*updateList();
  
--            Point displaySize = new Point();
-+            /*Point displaySize = new Point();
+             Point displaySize = new Point();
              mContext.getDisplay().getRealSize(displaySize);
-             mColorExtractor.addOnColorsChangedListener(this);
+@@ -1756,7 +1802,12 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
              mGradientDrawable.setScreenSize(displaySize.x, displaySize.y);
-             GradientColors colors = getDarkGradientColor(
-                     mColorExtractor.getColors(mKeyguardShowing ?
-                     WallpaperManager.FLAG_LOCK : WallpaperManager.FLAG_SYSTEM));
--            mGradientDrawable.setColors(colors, false);
-+            mGradientDrawable.setColors(colors, false);*/
-         }
- 
+             GradientColors colors = mColorExtractor.getColors(mKeyguardShowing ?
+                     WallpaperManager.FLAG_LOCK : WallpaperManager.FLAG_SYSTEM);
+-            updateColors(colors, false /* animate */);
++            *///updateColors(colors, false /* animate */);
++        }
++
 +        public ListView getListView() {
 +            return mAlert.getListView();
 +
-+        }
+         }
+ 
+         /**
+@@ -1765,7 +1816,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
+          * @param animate Interpolates gradient if true, just sets otherwise.
+          */
+         private void updateColors(GradientColors colors, boolean animate) {
+-            mGradientDrawable.setColors(getDarkGradientColor(colors), animate);
++            //mGradientDrawable.setColors(getDarkGradientColor(colors), animate);
+             View decorView = getWindow().getDecorView();
+             if (colors.supportsDarkText()) {
+                 decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR |
+@@ -1786,13 +1837,13 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
          @Override
          protected void onStop() {
              super.onStop();
@@ -208,7 +223,7 @@ index a3fe7412926..682422f7407 100644
              mHardwareLayout.setTranslationX(getAnimTranslation());
              mHardwareLayout.setAlpha(0);
              mHardwareLayout.animate()
-@@ -1695,10 +1744,16 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
+@@ -1806,10 +1857,16 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                          mGradientDrawable.setAlpha(alpha);
                      })
                      .withEndAction(() -> getWindow().getDecorView().requestAccessibilityFocus())
@@ -226,17 +241,17 @@ index a3fe7412926..682422f7407 100644
          public void dismiss() {
              mHardwareLayout.setTranslationX(0);
              mHardwareLayout.setAlpha(1);
-@@ -1719,7 +1774,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
-         private float getAnimTranslation() {
-             return getContext().getResources().getDimension(
-                     com.android.systemui.R.dimen.global_actions_panel_width) / 2;
+@@ -1825,7 +1882,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
+                         mGradientDrawable.setAlpha(alpha);
+                     })
+                     .start();
 -        }
-+        }*/
++        } */
  
-         @Override
-         public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent event) {
-@@ -1735,9 +1790,25 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
-             return super.dispatchPopulateAccessibilityEvent(event);
+         void dismissImmediately() {
+             super.dismiss();
+@@ -1836,23 +1893,39 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
+                     com.android.systemui.R.dimen.global_actions_panel_width) / 2;
          }
  
 +        @Override
@@ -260,19 +275,18 @@ index a3fe7412926..682422f7407 100644
 -            if (mKeyguardShowing) {
 +            /*if (mKeyguardShowing) {
                  if ((WallpaperManager.FLAG_LOCK & which) != 0) {
-                     mGradientDrawable.setColors(getDarkGradientColor(
-                             extractor.getColors(WallpaperManager.FLAG_LOCK)));
-@@ -1747,7 +1818,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
-                     mGradientDrawable.setColors(getDarkGradientColor(
-                             extractor.getColors(WallpaperManager.FLAG_SYSTEM)));
+                     updateColors(extractor.getColors(WallpaperManager.FLAG_LOCK),
+-                            true /* animate */);
++                            true  animate );
+                 }
+             } else {
+                 if ((WallpaperManager.FLAG_SYSTEM & which) != 0) {
+                     updateColors(extractor.getColors(WallpaperManager.FLAG_SYSTEM),
+-                            true /* animate */);
++                            true  animate );
                  }
 -            }
 +            }*/
-         }
- 
-         private GradientColors getDarkGradientColor(GradientColors fromWallpaper) {
-@@ -1758,8 +1829,8 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
-             return colors;
          }
  
 -        public void setKeyguardShowing(boolean keyguardShowing) {
