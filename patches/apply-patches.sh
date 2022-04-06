@@ -5,6 +5,7 @@ echo "Applying patches..."
 
 # Recovery patch
 cd bootable/recovery
+patch -p1 < ../../device/retroid/pocket2/patches/bootable/recovery/0001-pocket2-Fix-Items-to-Fit-on-Screen.patch
 patch -p1 < ../../device/retroid/pocket2/patches/bootable/recovery/0002-pocket1-Use-Back-Button-As-Down.patch
 cd ../../
 

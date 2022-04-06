@@ -1,0 +1,22 @@
+diff --git a/packages/SystemUI/src/com/android/systemui/ImageWallpaper.java b/packages/SystemUI/src/com/android/systemui/ImageWallpaper.java
+index 50d862dee29c..9eac27949ec0 100644
+--- a/packages/SystemUI/src/com/android/systemui/ImageWallpaper.java
++++ b/packages/SystemUI/src/com/android/systemui/ImageWallpaper.java
+@@ -494,8 +494,15 @@ public class ImageWallpaper extends WallpaperService {
+                         Log.d(TAG, "Redrawing: left=" + left + ", top=" + top);
+                     }
+ 
+-                    final float right = left + mBackground.getWidth() * mScale;
+-                    final float bottom = top + mBackground.getHeight() * mScale;
++                    float right = left + mBackground.getWidth() * mScale;
++                    float bottom = top + mBackground.getHeight() * mScale;
++                    // Pocket1 / Pocket2, check if background width reports as 853 (what backgrounds of the same resolution as the screen report as)
++                    if (mBackground.getWidth() == 853 && mBackground.getHeight() == 640){
++                        // Return modified positioning
++                        top += 80;
++                        right = left + 640 * mScale;
++                        bottom = top + 480 * mScale;
++                    }
+                     if (w < 0 || h < 0) {
+                         c.save(Canvas.CLIP_SAVE_FLAG);
+                         c.clipRect(left, top, right, bottom,
