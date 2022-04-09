@@ -38,3 +38,16 @@ cc_library_shared {
     ],
     proprietary: true,
 }
+
+cc_library_shared {
+    name: "libshim_kpoc",
+    srcs: ["kpoc/kpoc.cpp"],
+
+    shared_libs: [
+        "libbinder",
+        "libgui",
+        "libui",
+        "libutils",
+    ],
+}
+

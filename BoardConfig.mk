@@ -143,7 +143,8 @@ TARGET_LD_SHIM_LIBS := \
     /vendor/lib/libaudiocomponentengine_vendor.so|libshim_graphic_buffer.so \
     /system/lib/libaudiocomponentengine.so|libshim_graphic_buffer.so \
     /vendor/lib/libion_ulit.so|libshim_graphic_buffer.so \
-    /vendor/lib/mtk-rilproxy.so|libshim_graphic_buffer.so
+    /vendor/lib/mtk-rilproxy.so|libshim_graphic_buffer.so \
+    /system/bin/kpoc_charger|libshim_kpoc.so
 
 # Ignore Neverallow errors for sepolicy
 SELINUX_IGNORE_NEVERALLOWS := true

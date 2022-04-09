@@ -95,7 +95,8 @@ PRODUCT_PACKAGES += \
 # Shims
 PRODUCT_PACKAGES += \
     libshim_graphic_buffer \
-    libshim_mtkomx
+    libshim_mtkomx \
+    libshim_kpoc
 
 # Other libraries
 PRODUCT_PACKAGES += \
