@@ -90,4 +90,6 @@ extern "C" {
     void *_ZN7android21SurfaceComposerClient17getBuiltInDisplayEi(int32_t id) {
         return _ZN7android21SurfaceComposerClient23getPhysicalDisplayTokenEy(static_cast<uint64_t>(id));
     }
+
+    void _ZN7android5FenceD1Ev() {}
 }
