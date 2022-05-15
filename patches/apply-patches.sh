@@ -16,6 +16,11 @@ patch -p1 < ../../device/retroid/pocket2/patches/frameworks/base/0001-Fix-Screen
 patch -p1 < ../../device/retroid/pocket2/patches/frameworks/base/0002-Use-Pre-Oreo-Power-Off-UI-and-add-Reboot-to-Recovery.patch
 cd ../../
 
+# System/core patch (ld config)
+cd system/core
+patch -p1 < ../../device/retroid/pocket2/patches/system/core/rootdir-ld-config-for-libGLES_mali.patch
+cd ../..
+
 # App patches
 cd packages/apps
 
