@@ -17,6 +17,11 @@ cd frameworks/base
 git reset --hard
 cd ../../
 
+cd system/core
+git reset --hard
+git clean -f -d
+cd ../..
+
 # Settings
 cd packages/apps/Settings
 git reset --hard
