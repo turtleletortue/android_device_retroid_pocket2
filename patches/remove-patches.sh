@@ -7,10 +7,10 @@ cd bootable/recovery
 git reset --hard 
 cd ../../
 
-# Build/make/core
-cd build/make/core
+# Build/make
+cd build/make
 git reset --hard 
-cd ../../..
+cd ../../
 
 # Frameworks/base
 cd frameworks/base

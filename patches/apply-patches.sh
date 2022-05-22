@@ -9,6 +9,10 @@ patch -p1 < ../../device/retroid/pocket2/patches/bootable/recovery/0001-pocket2-
 patch -p1 < ../../device/retroid/pocket2/patches/bootable/recovery/0002-pocket1-Use-Back-Button-As-Down.patch
 cd ../../
 
+# Include recoveryimage patch
+cd build/make
+patch -p1 < ../../device/retroid/pocket2/patches/build/make/Include_Recovery_in_OTAs.patch
+cd ../../
 
 # Screenshots and Power Off UI patches
 cd frameworks/base

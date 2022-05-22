@@ -1,0 +1,32 @@
+diff --git a/tools/releasetools/ota_from_target_files.py b/tools/releasetools/ota_from_target_files.py
+index be0e798685..753aa2fcba 100755
+--- a/tools/releasetools/ota_from_target_files.py
++++ b/tools/releasetools/ota_from_target_files.py
+@@ -860,6 +860,9 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
+   boot_img = common.GetBootableImage(
+       "boot.img", "boot.img", OPTIONS.input_tmp, "BOOT")
+ 
++  recovery_img = common.GetBootableImage(
++      "recovery.img", "recovery.img", OPTIONS.input_tmp, "RECOVERY")
++
+   if HasVendorPartition(input_zip):
+     script.ShowProgress(0.1, 0)
+ 
+@@ -874,6 +877,9 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
+   common.CheckSize(boot_img.data, "boot.img", target_info)
+   common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
+ 
++  common.CheckSize(recovery_img.data, "recovery.img", target_info)
++  common.ZipWriteStr(output_zip, "recovery.img", recovery_img.data)
++
+   device_specific.FullOTA_PostValidate()
+ 
+   if OPTIONS.backuptool:
+@@ -1538,6 +1544,7 @@ else if get_stage("%(bcb_dev)s") != "3/3" then
+     if d is None:
+       include_full_boot = True
+       common.ZipWriteStr(output_zip, "boot.img", target_boot.data)
++      common.ZipWriteStr(output_zip, "recovery.img", target_recovery.data)
+     else:
+       include_full_boot = False
+ 
