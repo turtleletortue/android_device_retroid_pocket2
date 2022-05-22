@@ -31,7 +31,7 @@ cd ../
 
 # SetupWizard patches (remove emergency call, set double clicking home as app switcher, resize resolution to 640x480)
 cd SetupWizard
-patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/SetupWizard/0001-Remove-Emergency-Call-Option.patch
+patch -p1 < ../../../device/retroid/pocket2/patches/packages/apps/SetupWizard/0001-Pocket2-Enhancements.patch
 cd ../
 
 # Trebuchet patches (allow package Launcher3Go to be included and add back all apps button)

@@ -1,0 +1,128 @@
+diff --git a/res/values/strings.xml b/res/values/strings.xml
+index 3988bdb..9d0b326 100644
+--- a/res/values/strings.xml
++++ b/res/values/strings.xml
+@@ -24,9 +24,10 @@
+ 
+     <string name="activity_label_empty" />
+ 
+-    <string name="next">Next</string>
+-    <string name="skip">Skip</string>
+-    <string name="start">Start</string>
++    <string name="next">Next (R1)</string>
++    <string name="back">Back (L1)</string>
++    <string name="skip">Skip (R1)</string>
++    <string name="start">Start (R1)</string>
+     <string name="done">Done</string>
+     <string name="ok">OK</string>
+     <string name="loading">Just a sec\u2026</string>
+diff --git a/src/org/lineageos/setupwizard/BaseSetupWizardActivity.java b/src/org/lineageos/setupwizard/BaseSetupWizardActivity.java
+index 8d1875d..dcb4d35 100644
+--- a/src/org/lineageos/setupwizard/BaseSetupWizardActivity.java
++++ b/src/org/lineageos/setupwizard/BaseSetupWizardActivity.java
+@@ -45,6 +45,7 @@ import android.os.UserHandle;
+ import android.os.UserManager;
+ import android.util.Log;
+ import android.view.View;
++import android.view.KeyEvent;
+ import android.view.animation.Animation;
+ import android.view.animation.AnimationUtils;
+ import android.widget.Button;
+@@ -664,4 +665,14 @@ public abstract class BaseSetupWizardActivity extends Activity implements Naviga
+     protected int getIconResId() {
+         return -1;
+     }
++
++    public boolean onKeyDown(int keyCode, KeyEvent event) {
++        if (keyCode == KeyEvent.KEYCODE_BUTTON_R1) {
++            onNextPressed();
++        }
++        if (keyCode == KeyEvent.KEYCODE_BUTTON_L1) {
++            onBackPressed();
++        }
++        return true;
++    }
+ }
+diff --git a/src/org/lineageos/setupwizard/DateTimeActivity.java b/src/org/lineageos/setupwizard/DateTimeActivity.java
+index 4636938..d5ce38e 100644
+--- a/src/org/lineageos/setupwizard/DateTimeActivity.java
++++ b/src/org/lineageos/setupwizard/DateTimeActivity.java
+@@ -83,6 +83,7 @@ public class DateTimeActivity extends BaseSetupWizardActivity implements
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setNextText(R.string.next);
++        setBackText(R.string.back);
+ 
+         final Spinner spinner = (Spinner) findViewById(R.id.timezone_list);
+         final SimpleAdapter adapter = constructTimezoneAdapter(this, false);
+diff --git a/src/org/lineageos/setupwizard/LineageSettingsActivity.java b/src/org/lineageos/setupwizard/LineageSettingsActivity.java
+index 985037d..9bf9f83 100644
+--- a/src/org/lineageos/setupwizard/LineageSettingsActivity.java
++++ b/src/org/lineageos/setupwizard/LineageSettingsActivity.java
+@@ -85,6 +85,7 @@ public class LineageSettingsActivity extends BaseSetupWizardActivity {
+         super.onCreate(savedInstanceState);
+         mSetupWizardApp = (SetupWizardApp) getApplication();
+         setNextText(R.string.next);
++        setBackText(R.string.back);
+         String privacy_policy = getString(R.string.services_privacy_policy);
+         String policySummary = getString(R.string.services_explanation, privacy_policy);
+         SpannableString ss = new SpannableString(policySummary);
+diff --git a/src/org/lineageos/setupwizard/LocaleActivity.java b/src/org/lineageos/setupwizard/LocaleActivity.java
+index 3e9b71c..46bf7b6 100644
+--- a/src/org/lineageos/setupwizard/LocaleActivity.java
++++ b/src/org/lineageos/setupwizard/LocaleActivity.java
+@@ -79,6 +79,7 @@ public class LocaleActivity extends BaseSetupWizardActivity {
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setNextText(R.string.next);
++        setBackText(R.string.back);
+         mLanguagePicker = (LocalePicker) findViewById(R.id.locale_list);
+         loadLanguages();
+     }
+diff --git a/src/org/lineageos/setupwizard/LocationSettingsActivity.java b/src/org/lineageos/setupwizard/LocationSettingsActivity.java
+index b90f11b..b850acc 100644
+--- a/src/org/lineageos/setupwizard/LocationSettingsActivity.java
++++ b/src/org/lineageos/setupwizard/LocationSettingsActivity.java
+@@ -77,6 +77,7 @@ public class LocationSettingsActivity extends BaseSetupWizardActivity {
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setNextText(R.string.next);
++        setBackText(R.string.back);
+ 
+         mContentResolver = getContentResolver();
+         TextView summaryView = (TextView) findViewById(android.R.id.summary);
+diff --git a/src/org/lineageos/setupwizard/SubBaseActivity.java b/src/org/lineageos/setupwizard/SubBaseActivity.java
+index 354ff78..19f9ece 100644
+--- a/src/org/lineageos/setupwizard/SubBaseActivity.java
++++ b/src/org/lineageos/setupwizard/SubBaseActivity.java
+@@ -47,6 +47,7 @@ public abstract class SubBaseActivity extends BaseSetupWizardActivity {
+         }
+         super.onCreate(savedInstanceState);
+         setNextText(R.string.skip);
++        setBackText(R.string.back);
+         setNextAllowed(false);
+         if (savedInstanceState == null) {
+             onStartSubactivity();
+diff --git a/src/org/lineageos/setupwizard/WelcomeActivity.java b/src/org/lineageos/setupwizard/WelcomeActivity.java
+index 1617869..f092d12 100644
+--- a/src/org/lineageos/setupwizard/WelcomeActivity.java
++++ b/src/org/lineageos/setupwizard/WelcomeActivity.java
+@@ -35,7 +35,8 @@ public class WelcomeActivity extends BaseSetupWizardActivity {
+         super.onCreate(savedInstanceState);
+         mRootView = findViewById(R.id.root);
+         setNextText(R.string.next);
+-        setBackText(R.string.emergency_call);
++        //setBackText(R.string.emergency_call);
++        setBackAllowed(false);
+         setBackDrawable(null);
+         mEnableAccessibilityController =
+                 EnableAccessibilityController.getInstance(getApplicationContext());
+@@ -49,7 +50,7 @@ public class WelcomeActivity extends BaseSetupWizardActivity {
+ 
+     @Override
+     public void onNavigateBack() {
+-        startEmergencyDialer();
++        //startEmergencyDialer();
+     }
+ 
+     @Override
