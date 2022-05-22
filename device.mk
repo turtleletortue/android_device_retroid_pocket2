@@ -105,7 +105,6 @@ PRODUCT_PACKAGES += \
 
 # Default default.prop properties
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp,adb \
     ro.config.low_ram=true \
     ro.mount.fs=EXT4 \
     persist.service.acm.enable=0 \
