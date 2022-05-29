@@ -1,5 +1,5 @@
 diff --git a/tools/releasetools/ota_from_target_files.py b/tools/releasetools/ota_from_target_files.py
-index be0e798685..753aa2fcba 100755
+index be0e798685..c9399561a8 100755
 --- a/tools/releasetools/ota_from_target_files.py
 +++ b/tools/releasetools/ota_from_target_files.py
 @@ -860,6 +860,9 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
@@ -30,3 +30,21 @@ index be0e798685..753aa2fcba 100755
      else:
        include_full_boot = False
  
+@@ -1588,6 +1595,8 @@ else
+   if OPTIONS.two_step:
+     common.ZipWriteStr(output_zip, "boot.img", target_boot.data)
+     script.WriteRawImage("/boot", "boot.img")
++    common.ZipWriteStr(output_zip, "recovery.img", target_recovery.data)
++    script.WriteRawImage("/recovery", "recovery.img")
+     print("writing full boot image (forced by two-step mode)")
+ 
+   if not OPTIONS.two_step:
+@@ -1596,6 +1605,8 @@ else
+         print("boot image changed; including full.")
+         script.Print("Installing boot image...")
+         script.WriteRawImage("/boot", "boot.img")
++        script.Print("Installing recovery image...")
++        script.WriteRawImage("/recovery", "recovery.img")
+       else:
+         # Produce the boot image by applying a patch to the current
+         # contents of the boot partition, and write it back to the
