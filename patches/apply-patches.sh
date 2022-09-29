@@ -18,6 +18,7 @@ cd ../../
 cd frameworks/base
 patch -p1 < ../../device/retroid/pocket2/patches/frameworks/base/0001-Pocket2-Fix-Screenshots.patch
 patch -p1 < ../../device/retroid/pocket2/patches/frameworks/base/0002-Use-Pre-Oreo-Power-Off-UI-and-add-Reboot-to-Recovery.patch
+patch -p1 < ../../device/retroid/pocket2/patches/frameworks/base/0003-Fix-Screen-Res-Wallpapers.patch
 cd ../../
 
 # App patches
