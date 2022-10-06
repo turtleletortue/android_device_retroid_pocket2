@@ -40,14 +40,14 @@ PRODUCT_PACKAGES += \
     liblog_mtk
 
 # Shims
-PRODUCT_PACKAGES += \
-    libmtk_symbols \
-    libshim_ui \
-    libshim_wvm \
-    libshim_drm \
-    libshim_bionic \
-    libshim_netutils \
-    libshim_camera
+#PRODUCT_PACKAGES += \
+#    libmtk_symbols \
+#    libshim_ui \
+#    libshim_wvm \
+#    libshim_drm \
+#    libshim_bionic \
+#    libshim_netutils \
+#    libshim_camera
 
 # MiraVision
 PRODUCT_PACKAGES += \
