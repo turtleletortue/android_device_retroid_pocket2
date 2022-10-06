@@ -68,8 +68,8 @@ PRODUCT_PACKAGES += \
     Leanback
 
 # Android stock launcher
-PRODUCT_PACKAGES += \
-    Launcher3
+#PRODUCT_PACKAGES += \
+#    Launcher3Stock
 
 # RePoLa (community, open source launcher)
 PRODUCT_PACKAGES += \
