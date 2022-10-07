@@ -1,0 +1,79 @@
+Subject: [PATCH] Pocket2 Fix Screenshots * On Pocket2, the LCM resolution
+ being 640x800, while the actual screen being 640x480 has weird effects on
+ screenshots. It causes screenshots to appear as 640x800 images squished down
+ to 640x480, resulting in blurry, inaccurate screenshots. This patch makes it
+ so it takes the screenshot at LCM resolution (640x800) and then crops it to
+ 640x480 at the y value of 160 (where the 640x480 screen actually starts).
+ This will make it so screenshots will come out exactly like how the thing
+ screenshotted appears on screen.
+
+Change-Id: Ia91e20c2a987ed024800781ace6fef1080319e77
+---
+ .../systemui/screenshot/GlobalScreenshot.java | 26 ++++++++++++-------
+ 1 file changed, 16 insertions(+), 10 deletions(-)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/screenshot/GlobalScreenshot.java b/packages/SystemUI/src/com/android/systemui/screenshot/GlobalScreenshot.java
+index 260f625b..49a8f1f0 100644
+--- a/packages/SystemUI/src/com/android/systemui/screenshot/GlobalScreenshot.java
++++ b/packages/SystemUI/src/com/android/systemui/screenshot/GlobalScreenshot.java
+@@ -479,7 +479,7 @@ class GlobalScreenshot {
+ 
+         // Scale has to account for both sides of the bg
+         mBgPadding = (float) r.getDimensionPixelSize(R.dimen.global_screenshot_bg_padding);
+-        mBgPaddingScale = mBgPadding /  mDisplayMetrics.widthPixels;
++        mBgPaddingScale = mBgPadding / 640;
+ 
+         // determine the optimal preview size
+         int panelWidth = 0;
+@@ -489,7 +489,7 @@ class GlobalScreenshot {
+         }
+         if (panelWidth <= 0) {
+             // includes notification_panel_width==match_parent (-1)
+-            panelWidth = mDisplayMetrics.widthPixels;
++            panelWidth = 640;
+         }
+         mPreviewWidth = panelWidth;
+         mPreviewHeight = r.getDimensionPixelSize(R.dimen.notification_max_height);
+@@ -542,7 +542,8 @@ class GlobalScreenshot {
+         // We need to orient the screenshot correctly (and the Surface api seems to take screenshots
+         // only in the natural orientation of the device :!)
+         mDisplay.getRealMetrics(mDisplayMetrics);
+-        float[] dims = {mDisplayMetrics.widthPixels, mDisplayMetrics.heightPixels};
++        // statically set to lcm resolution
++        float[] dims = {640, 800};
+         int rot = mDisplay.getRotation();
+         // Allow for abnormal hardware orientation
+         rot = (rot + mSfHwRotation) % 4;
+@@ -567,8 +568,8 @@ class GlobalScreenshot {
+ 
+         if (requiresRotation) {
+             // Rotate the screenshot to the current orientation
+-            Bitmap ss = Bitmap.createBitmap(mDisplayMetrics.widthPixels,
+-                    mDisplayMetrics.heightPixels, Bitmap.Config.ARGB_8888);
++            Bitmap ss = Bitmap.createBitmap(640,
++                    800, Bitmap.Config.ARGB_8888);
+             Canvas c = new Canvas(ss);
+             c.translate(ss.getWidth() / 2, ss.getHeight() / 2);
+             c.rotate(degrees);
+@@ -580,12 +581,17 @@ class GlobalScreenshot {
+             mScreenBitmap = ss;
+         }
+ 
++        // Crop from 640x800 to 640x480
++        Bitmap cropped = Bitmap.createBitmap(mScreenBitmap, 0, 160, 640, 480);
++        mScreenBitmap.recycle();
++        mScreenBitmap = cropped;
++
+         // Optimizations
+         mScreenBitmap.setHasAlpha(false);
+         mScreenBitmap.prepareToDraw();
+ 
+         // Start the post-screenshot animation
+-        startAnimation(finisher, mDisplayMetrics.widthPixels, mDisplayMetrics.heightPixels,
++        startAnimation(finisher, 640, 480,
+                 statusBarVisible, navBarVisible);
+     }
+ 
+-- 
+2.25.1
+
