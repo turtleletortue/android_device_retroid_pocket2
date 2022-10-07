@@ -72,6 +72,9 @@ on fs
 	exec /system/bin/sh /system/bin/startup.sh
     write /proc/bootprof "INIT:Mount_END"
 
+    # Screen resolution fix
+    setprop ro.config.size_override 640,480
+
 on fs
 
    mount iso9660 loop@/system/etc/iAmCdRom.iso /mnt/cd-rom ro
@@ -139,6 +142,10 @@ on post-fs-data
 
     # NFC
     mkdir /data/nfc_socket 0771 nfc radio
+
+    # Screen resolution fix
+    setprop persist.sys.display.resolution 640x480
+    setprop persist.vendor.sys.display.resolution 640x480
 
 # -----------------------
 # Add by MTK
