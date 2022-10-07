@@ -19,12 +19,12 @@ TARGET_SCREEN_WIDTH := 480
 
 # Kernel
 TARGET_KERNEL_ARCH := arm
-#TARGET_KERNEL_SOURCE := kernel/retroid/pocket2
-#TARGET_KERNEL_CONFIG := real6580_weg_m_defconfig
-#BOARD_KERNEL_IMAGE_NAME := zImage-dtb
-#TARGET_KERNEL_CROSS_COMPILE_PREFIX := $(shell pwd)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin/arm-eabi-
+TARGET_KERNEL_SOURCE := kernel/retroid/pocket2
+TARGET_KERNEL_CONFIG := real6580_weg_m_defconfig
+BOARD_KERNEL_IMAGE_NAME := zImage-dtb
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := $(shell pwd)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin/arm-eabi-
 BOARD_MKBOOTIMG_ARGS := --pagesize 2048 --base 0x80000000 --kernel_offset 0x00008000 --ramdisk_offset 0x04000000 --second_offset 0x00f00000 --tags_offset 0x0e000000 --cmdline "bootopt=64S3,32S1,32S1 androidboot.selinux=permissive"
-TARGET_PREBUILT_KERNEL := device/retroid/pocket2/kernel
+#TARGET_PREBUILT_KERNEL := device/retroid/pocket2/kernel
 
 # Images
 TARGET_USERIMAGES_USE_EXT4 := true
